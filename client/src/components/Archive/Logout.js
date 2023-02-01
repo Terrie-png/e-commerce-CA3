@@ -2,8 +2,8 @@ import React, {Component} from "react"
 import {Redirect} from "react-router-dom"
 import axios from "axios"
 
-import LinkInClass from "../components/LinkInClass"
-import {ACCESS_LEVEL_GUEST, SERVER_HOST} from "../config/global_constants"
+import LinkInClass from "./LinkInClass"
+import {ACCESS_LEVEL_GUEST, SERVER_HOST} from "../../config/global_constants"
 
 
 export default class Logout extends Component

@@ -3,9 +3,9 @@ import Form from "react-bootstrap/Form"
 import {Redirect, Link} from "react-router-dom"
 import axios from "axios"
 
-import LinkInClass from "../components/LinkInClass"
+import LinkInClass from "./LinkInClass"
 
-import {ACCESS_LEVEL_NORMAL_USER, SERVER_HOST} from "../config/global_constants"
+import {ACCESS_LEVEL_NORMAL_USER, SERVER_HOST} from "../../config/global_constants"
 
 export default class EditCar extends Component 
 {

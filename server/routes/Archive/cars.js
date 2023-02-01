@@ -1,6 +1,6 @@
 const router = require(`express`).Router()
 
-const carsModel = require(`../models/cars`)
+const carsModel = require(`server/models/Archive/cars`)
 
 
 // read all records

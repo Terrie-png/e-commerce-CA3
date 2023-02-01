@@ -1,6 +1,6 @@
 const router = require(`express`).Router()
 
-const usersModel = require(`../models/users`)
+const usersModel = require(`server/models/Archive/users`)
 
 const bcrypt = require('bcryptjs');  // needed for password encryption
 
