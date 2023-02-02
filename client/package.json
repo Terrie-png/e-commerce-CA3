@@ -1,5 +1,5 @@
 {
-  "name": "server_session",
+  "name": "e-commerce-ca",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
@@ -32,7 +32,7 @@
       "last 1 safari version"
     ]
   },
-  "description": "Server-side sessions example",
+  "description": "Project CA of E-commerce",
   "main": "index.js",
   "devDependencies": {},
   "author": "Derek O Reilly",

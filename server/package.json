@@ -1,7 +1,7 @@
 {
-  "name": "server_session",
+  "name": "e-commerce-ca",
   "version": "1.0.0",
-  "description": "Server-side sessions example",
+  "description": "Project CA of E-commerce",
   "main": "server.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
