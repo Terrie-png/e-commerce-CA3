@@ -13,7 +13,9 @@ import EditCar from "./components/EditCar"
 import DeleteCar from "./components/DeleteCar"
 import DisplayAllCars from "./components/DisplayAllCars"
 import LoggedInRoute from "./components/LoggedInRoute"
-
+import DisplayAllProducts from "./components/DisplayAllProducts";
+import EditProduct from "./components/EditProduct";
+import DeleteProduct from "./components/DeleteProduct";
 
 import {ACCESS_LEVEL_GUEST} from "./config/global_constants"
 
@@ -36,11 +38,15 @@ export default class App extends Component
                     <Route exact path="/ResetDatabase" component={ResetDatabase} />                    
                     <Route exact path="/" component={DisplayAllCars} />
                     <Route exact path="/Login" component={Login} />
+                    <Route exact path="/Test" component={DisplayAllProducts}/>
                     <LoggedInRoute exact path="/Logout" component={Logout} />
                     <LoggedInRoute exact path="/AddCar" component={AddCar} />
                     <LoggedInRoute exact path="/EditCar/:id" component={EditCar} />
                     <LoggedInRoute exact path="/DeleteCar/:id" component={DeleteCar} />
-                    <Route exact path="/DisplayAllCars" component={DisplayAllCars}/> 
+                    <LoggedInRoute exact path="/EditProduct/:id" component={EditProduct} />
+                    <LoggedInRoute exact path="/DeleteProduct/:id" component={DeleteProduct} />
+                    <Route exact path="/DisplayAllCars" component={DisplayAllCars}/>
+                    <Route exact path="/DisplayAllProducts" component={DisplayAllProducts}/>
                     <Route path="*" component={DisplayAllCars}/>                            
                 </Switch>
             </BrowserRouter>

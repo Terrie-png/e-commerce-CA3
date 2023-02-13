@@ -62,7 +62,7 @@ export default class Login extends Component
             <form className="form-container" noValidate = {true} id = "loginOrRegistrationForm">
                 <h2>Login</h2>
                 
-                {this.state.isLoggedIn ? <Redirect to="/DisplayAllCars"/> : null} 
+                {this.state.isLoggedIn ? <Redirect to="/Test"/> : null}
                 
                 <input 
                     type = "email" 
@@ -83,7 +83,7 @@ export default class Login extends Component
                 /><br/><br/>
                 
                 <LinkInClass value="Login" className="green-button" onClick={this.handleSubmit}/> 
-                <Link className="red-button" to={"/DisplayAllCars"}>Cancel</Link>                                      
+                <Link className="red-button" to={"/DisplayAllProducts"}>Cancel</Link>
             </form>
         )
     }
