@@ -9,7 +9,7 @@ let productsSchema = new mongoose.Schema(
         price: {type: Number},
         is_in_inventory: {type:Boolean},
         items_left: {type:Number},
-        imageURL: {type:String},
+        imageURL: {type:String ,default:""},
         slug: {type: String}
     },
     {

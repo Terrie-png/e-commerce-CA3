@@ -1,6 +1,6 @@
 const router = require(`express`).Router()
 
-const productsModel = require(`..\\models\\product.js`)
+const productsModel = require(`..\\models\\products.js`)
 
 
 
@@ -25,7 +25,7 @@ router.get(`/products/:id`, (req, res) =>
     }
     else
     {
-        carsModel.findById(req.params.id, (error, data) =>
+        productsModel.findById(req.params.id, (error, data) =>
         {
             res.json(data)
         })
