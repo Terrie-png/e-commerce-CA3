@@ -9,12 +9,13 @@ require(`./config/db`)
 // Express
 const express = require(`express`)
 const app = express()
-app.use(require(`express-session`)({
-    secret: process.env.SESSION_PRIVATE_KEY,
-    resave: false,
-    cookie: {secure: false, maxAge: 60000}, 
-    saveUninitialized: true
-}))
+// #for session only
+// app.use(require(`express-session`)({
+//     secret: process.env.SESSION_PRIVATE_KEY,
+//     resave: false,
+//     cookie: {secure: false, maxAge: 60000},
+//     saveUninitialized: true
+// }))
 
 app.use(require(`body-parser`).json())
 app.use(require(`cors`)({credentials: true, origin: process.env.LOCAL_HOST}))

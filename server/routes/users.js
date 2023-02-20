@@ -1,9 +1,11 @@
 const router = require(`express`).Router()
-
+const multer  = require('multer')
+const upload = multer({dest: `${process.env.UPLOADED_FILES_FOLDER}`})
 const usersModel = require(`../models/users`)
 
 const bcrypt = require('bcryptjs');  // needed for password encryption
 
+const jwt = require('jsonwebtoken')
 
 // IMPORTANT
 // Obviously, in a production release, you should never have the code below, as it allows a user to delete a database collection
@@ -14,7 +16,7 @@ router.post(`/users/reset_user_collection`, (req,res) =>
     {
         if(data)
         {
-            const adminPassword = `123!"£qweQWE`
+            const adminPassword = `test`
             bcrypt.hash(adminPassword, parseInt(process.env.PASSWORD_HASH_SALT_ROUNDS), (err, hash) =>  
             {
                 if(err){console.log("bad")}
@@ -40,7 +42,8 @@ router.post(`/users/reset_user_collection`, (req,res) =>
 })
 
 
-router.post(`/users/register/:name/:email/:password`, (req,res) => 
+// register
+router.post(`/users/register/:name/:email/:password`,upload.single("profilePhoto") ,(req,res) =>
 {
     // If a user with this email does not already exist, then create new user
     usersModel.findOne({email:req.params.email}, (uniqueError, uniqueData) => 
@@ -57,8 +60,9 @@ router.post(`/users/register/:name/:email/:password`, (req,res) =>
                 {
                     if(data)
                     {
-                        req.session.user = {email: data.email, accessLevel:data.accessLevel}
-                        res.json({name: data.name, accessLevel:data.accessLevel})
+                        const token = jwt.sign({email:data.email, accessLevel:data.accessLevel}, process.env.JWT_PRIVATE_KEY, {algorithm:'HS256', expiresIn:process.env.JWT_EXPIRY})
+                        // req.session.user = {email: data.email, accessLevel:data.accessLevel}
+                        res.json({name: data.name, accessLevel:data.accessLevel, token:token})
                     }
                     else
                     {
@@ -71,7 +75,8 @@ router.post(`/users/register/:name/:email/:password`, (req,res) =>
 })
  
 
-router.post(`/users/login/:email/:password`, (req,res) => 
+// login
+router.post(`/users/login/:email/:password`, (req,res) =>
 {
     usersModel.findOne({email:req.params.email}, (error, data) => 
     {
@@ -81,8 +86,9 @@ router.post(`/users/login/:email/:password`, (req,res) =>
             {
                 if(result)
                 {
-                    req.session.user = {email: data.email, accessLevel:data.accessLevel}
-                    res.json({name: data.name, accessLevel:data.accessLevel})
+                    const token = jwt.sign({email:data.email, accessLevel:data.accessLevel}, process.env.JWT_PRIVATE_KEY, {algorithm:'HS256', expiresIn:process.env.JWT_EXPIRY})
+                    // req.session.user = {email: data.email, accessLevel:data.accessLevel}
+                    res.json({name: data.name, accessLevel:data.accessLevel,token:token})
                 }
                 else
                 {
@@ -99,7 +105,7 @@ router.post(`/users/login/:email/:password`, (req,res) =>
 })
 
 
-router.post(`/users/logout`, (req,res) => 
+router.post(`/users/logouts`, (req,res) =>
 {       
     req.session.destroy()
     res.json({})

@@ -26,7 +26,7 @@ export default class ResetDatabase extends Component
 
     resetUsersModel = () =>
     {
-        axios.defaults.withCredentials = true // needed for sessions to work
+         // needed for sessions to work
         axios.post(`${SERVER_HOST}/users/reset_user_collection`)
         .then(res => 
         {     
@@ -37,8 +37,9 @@ export default class ResetDatabase extends Component
                     console.log(res.data.errorMessage)    
                 }
                 else // user successfully reset the User collection
-                { 
+                {
                     console.log("User collection reset")
+                    localStorage.clear()
                 }        
             }
             else

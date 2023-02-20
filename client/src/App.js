@@ -16,14 +16,17 @@ import LoggedInRoute from "./components/LoggedInRoute"
 import DisplayAllProducts from "./components/DisplayAllProducts";
 import EditProduct from "./components/EditProduct";
 import DeleteProduct from "./components/DeleteProduct";
+import DisplayCart from "./components/DisplayCart";
 
 import {ACCESS_LEVEL_GUEST} from "./config/global_constants"
 
 
-if (typeof sessionStorage.accessLevel === "undefined")
+if (typeof localStorage.accessLevel === "undefined")
 {
-    sessionStorage.name = "GUEST"
-    sessionStorage.accessLevel = ACCESS_LEVEL_GUEST
+    localStorage.name = "GUEST"
+    localStorage.accessLevel = ACCESS_LEVEL_GUEST
+    localStorage.token = null
+
 }
 
     
@@ -36,18 +39,15 @@ export default class App extends Component
                 <Switch>
                     <Route exact path="/Register" component={Register} />
                     <Route exact path="/ResetDatabase" component={ResetDatabase} />                    
-                    <Route exact path="/" component={DisplayAllCars} />
+                    <Route exact path="/" component={DisplayAllProducts} />
                     <Route exact path="/Login" component={Login} />
-                    <Route exact path="/Test" component={DisplayAllProducts}/>
                     <LoggedInRoute exact path="/Logout" component={Logout} />
                     <LoggedInRoute exact path="/AddCar" component={AddCar} />
-                    <LoggedInRoute exact path="/EditCar/:id" component={EditCar} />
-                    <LoggedInRoute exact path="/DeleteCar/:id" component={DeleteCar} />
                     <LoggedInRoute exact path="/EditProduct/:id" component={EditProduct} />
                     <LoggedInRoute exact path="/DeleteProduct/:id" component={DeleteProduct} />
-                    <Route exact path="/DisplayAllCars" component={DisplayAllCars}/>
+                    <LoggedInRoute exact path="/Carts/:id" component={DisplayCart}/>
                     <Route exact path="/DisplayAllProducts" component={DisplayAllProducts}/>
-                    <Route path="*" component={DisplayAllCars}/>                            
+                    <Route path="*" component={DisplayAllProducts}/>
                 </Switch>
             </BrowserRouter>
         )
