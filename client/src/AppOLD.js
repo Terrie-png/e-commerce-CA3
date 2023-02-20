@@ -18,11 +18,11 @@ import PrivateRoute from "./components/PrivateRoute"
 import {ACCESS_LEVEL_GUEST} from "./config/global_constants"
 
 
-if (typeof sessionStorage.isLoggedIn === "undefined")
+if (typeof localStorage.isLoggedIn === "undefined")
 {
-    sessionStorage.isLoggedIn = "false"
-    sessionStorage.name = "GUEST"
-    sessionStorage.accessLevel = ACCESS_LEVEL_GUEST
+    localStorage.isLoggedIn = "false"
+    localStorage.name = "GUEST"
+    localStorage.accessLevel = ACCESS_LEVEL_GUEST
 }
 
     
