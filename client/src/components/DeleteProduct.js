@@ -19,7 +19,7 @@ export default class DeleteProduct extends Component
 
     componentDidMount()
     {
-        axios.defaults.withCredentials = true // needed for sessions to work
+         // needed for sessions to work
         axios.delete(`${SERVER_HOST}/products/${this.props.match.params.id}`)
             .then(res =>
             {

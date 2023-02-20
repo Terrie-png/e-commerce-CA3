@@ -9,14 +9,12 @@ import ResetDatabase from "./components/ResetDatabase"
 import Login from "./components/Login"
 import Logout from "./components/Logout"
 import AddCar from "./components/AddCar"
-import EditCar from "./components/EditCar"
-import DeleteCar from "./components/DeleteCar"
-import DisplayAllCars from "./components/DisplayAllCars"
 import LoggedInRoute from "./components/LoggedInRoute"
 import DisplayAllProducts from "./components/DisplayAllProducts";
 import EditProduct from "./components/EditProduct";
 import DeleteProduct from "./components/DeleteProduct";
 import DisplayCart from "./components/DisplayCart";
+import AddProduct from "./components/AddProduct"
 
 import {ACCESS_LEVEL_GUEST} from "./config/global_constants"
 
@@ -43,6 +41,7 @@ export default class App extends Component
                     <Route exact path="/Login" component={Login} />
                     <LoggedInRoute exact path="/Logout" component={Logout} />
                     <LoggedInRoute exact path="/AddCar" component={AddCar} />
+                    <LoggedInRoute exact path="/AddProduct" component={AddProduct}/>
                     <LoggedInRoute exact path="/EditProduct/:id" component={EditProduct} />
                     <LoggedInRoute exact path="/DeleteProduct/:id" component={DeleteProduct} />
                     <LoggedInRoute exact path="/Carts/:id" component={DisplayCart}/>

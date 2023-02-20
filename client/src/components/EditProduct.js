@@ -23,7 +23,7 @@ export default class EditProduct extends Component
             is_in_inventory: ``,
             items_left: ``,
             slug: ``,
-            redirectToDisplayAllProducts:sessionStorage.accessLevel < ACCESS_LEVEL_NORMAL_USER
+            redirectToDisplayAllProducts:localStorage.accessLevel < ACCESS_LEVEL_NORMAL_USER
         }
     }
 
@@ -31,8 +31,8 @@ export default class EditProduct extends Component
     {
         this.inputToFocus.focus()
 
-        axios.defaults.withCredentials = true // needed for sessions to work
-        axios.get(`${SERVER_HOST}/Products/${this.props.match.params.id}`)
+         // needed for sessions to work
+        axios.get(`${SERVER_HOST}/Products/${this.props.match.params.id}`,{headers:{"authorization":localStorage.token}})
             .then(res =>
             {
                 if(res.data)
@@ -84,7 +84,7 @@ export default class EditProduct extends Component
             slug: this.state.slug
         }
 
-        axios.defaults.withCredentials = true // needed for sessions to work
+         // needed for sessions to work
         axios.put(`${SERVER_HOST}/Products/${this.props.match.params.id}`, ProductObject)
             .then(res =>
             {

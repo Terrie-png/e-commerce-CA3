@@ -28,7 +28,7 @@ export default class Login extends Component
     
     handleSubmit = (e) => 
     {
-        axios.defaults.withCredentials = true // needed for sessions to work
+         // needed for sessions to work
         axios.post(`${SERVER_HOST}/users/login/${this.state.email}/${this.state.password}`)
         .then(res => 
         {     
@@ -42,8 +42,9 @@ export default class Login extends Component
                 { 
                     console.log("User logged in")
                     
-                    sessionStorage.name = res.data.name
-                    sessionStorage.accessLevel = res.data.accessLevel
+                    localStorage.name = res.data.name
+                    localStorage.accessLevel = res.data.accessLevel
+                    localStorage.token = res.data.token
                     
                     this.setState({isLoggedIn:true})
                 }        

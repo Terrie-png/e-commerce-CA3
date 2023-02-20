@@ -3,10 +3,10 @@ import {Link} from "react-router-dom"
 
 import axios from "axios"
 
-import ProductsTable from "./ProductsTable"
 import Logout from "./Logout"
 
 import {ACCESS_LEVEL_GUEST,ACCESS_LEVEL_ADMIN, SERVER_HOST} from "../config/global_constants"
+import ProductsCards from "./ProductsCards";
 
 
 export default class DisplayAllProducts extends Component
@@ -21,37 +21,54 @@ export default class DisplayAllProducts extends Component
     }
 
 
-    componentDidMount()
-    {
-        axios.defaults.withCredentials = true // needed for sessions to work
+    componentDidMount() {
+        // needed for sessions to work
         axios.get(`${SERVER_HOST}/products`)
-            .then(res =>
-            {
-                if(res.data)
-                {
-                    if (res.data.errorMessage)
-                    {
+            .then(res => {
+                if (res.data) {
+                    if (res.data.errorMessage) {
                         console.log(res.data.errorMessage)
-                    }
-                    else
-                    {
+                    } else {
                         console.log("Records read")
                         this.setState({products: res.data})
                     }
-                }
-                else
-                {
+                } else {
                     console.log("Record not found")
                 }
             })
+
+    //     if(!this.state.products.length >0){
+    //         axios.post(`${SERVER_HOST}/resetDB`)
+    //             .then(res =>
+    //             {
+    //                 if(res.data)
+    //                 {
+    //                     if (res.data.errorMessage)
+    //                     {
+    //                         console.log(res.data.errorMessage)
+    //                     }
+    //                     else
+    //                     {
+    //                         console.log("Records read")
+    //                         this.setState({products: res.data})
+    //                     }
+    //                 }
+    //                 else
+    //                 {
+    //                     console.log("something wrong at the server side")
+    //                 }
+    //             })
+    //     }
     }
 
 
     render()
     {
+        console.log(localStorage);
+
         return (
             <div className="form-container">
-                {sessionStorage.accessLevel >  ACCESS_LEVEL_GUEST ?
+                {localStorage.accessLevel >  ACCESS_LEVEL_GUEST ?
                     <div className="logout">
                         <Logout/>
                     </div>
@@ -62,16 +79,18 @@ export default class DisplayAllProducts extends Component
                         <Link className="red-button" to={"/ResetDatabase"}>Reset Database</Link>  <br/><br/><br/></div>
                 }
 
-                <div className="table-container">
-                    <ProductsTable product={this.state.products} />
+                {localStorage.accessLevel >= ACCESS_LEVEL_ADMIN ?
+                    <div className="add-new-car">
+                        <Link className="blue-button" to={"/AddProduct"}>Add New Car</Link>
+                    </div>
+                    :
+                    null
+                }
 
-                    {sessionStorage.accessLevel >= ACCESS_LEVEL_ADMIN ?
-                        <div className="add-new-car">
-                            <Link className="blue-button" to={"/AddCar"}>Add New Car</Link>
-                        </div>
-                        :
-                        null
-                    }
+                <div className="table-container">
+                    <ProductsCards product={this.state.products} />
+
+
                 </div>
             </div>
         )
