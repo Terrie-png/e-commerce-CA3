@@ -1,5 +1,34 @@
+h2{
+   background-color: burlywood;
+   padding:15px; 
+}
+h1{
+    background-color: black;
+    color:white;
+}
+h3{
+    
+    color:white;
+
+}
+
 .container {
   padding-top: 10px;
+}
+.fa-solid fa-heart
+{
+    color:white;
+}
+#cd
+{
+    background-color: black;;
+    text-align: left;
+    display:flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items:left;
+    size:30px;
+    color:white;
 }
 
 .form-container,

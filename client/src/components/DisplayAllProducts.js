@@ -1,5 +1,11 @@
 import React, {Component} from "react"
 import {Link} from "react-router-dom"
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import '@fortawesome/fontawesome-free/css/all.min.css';
+import { faCoffee } from '@fortawesome/free-solid-svg-icons';
+import { faHeart } from '@fortawesome/free-solid-svg-icons';
+
+
 
 import axios from "axios"
 
@@ -67,6 +73,21 @@ export default class DisplayAllProducts extends Component
         console.log(localStorage);
 
         return (
+            <div>
+                <head>
+                </head>
+            <body>
+            <div id="ab">
+            <h2> </h2>
+                <div id="cd">
+             <h1>KORs</h1>
+            <h3>Women</h3>
+            <h3>Men</h3>
+            <h3>Kids</h3>
+            <input type="search" placeholder="Search"/>
+            {/* <FontAwesomeIcon icon={faCoffee} /> */}
+            <FontAwesomeIcon icon={faHeart} />
+            </div>
             <div className="form-container">
                 {localStorage.accessLevel >  ACCESS_LEVEL_GUEST ?
                     <div className="logout">
@@ -92,6 +113,9 @@ export default class DisplayAllProducts extends Component
 
 
                 </div>
+            </div>
+            </div>
+            </body>
             </div>
         )
     }
