@@ -9,16 +9,18 @@ export default class ProductCard extends Component
     render()
     {
         return (
-            <div Style="padding:10px 10px 10px 10px; border-style:solid; margin:10px 10px 10px 10px">
-                {this.props.product.name}
-                {this.props.product.brand}
-                {this.props.product.gender}
-                {this.props.product.catxegory}
-                {this.props.product.price}
-                {this.props.product.is_in_inventory}
-                {this.props.product.items_left}
-                {this.props.product.imageURL}
-                {this.props.product.slug}
+            <div>
+                <div>{this.props.product.name}</div>
+                <div>{this.props.product.brand}</div>
+                <div> {this.props.product.gender}</div>
+                <div> {this.props.product.catxegory}</div>
+                <div>{this.props.product.price}</div>
+                <div>{this.props.product.is_in_inventory}</div>
+                <div> {this.props.product.items_left}</div>
+                <div>
+                    <img src={this.props.product.imageURL} alt="lol" height="250px" width="250px"/>
+                </div>
+                <div>{this.props.product.slug}</div>
 
                 {localStorage.accessLevel > ACCESS_LEVEL_GUEST ? <Link className="green-button" to={"/EditProduct/" + this.props.product._id}>Edit</Link> : null}
 

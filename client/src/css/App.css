@@ -31,11 +31,17 @@ h3{
     color:white;
 }
 
+.cards
+{
+    display:flex;
+flex-wrap:wrap;
+}
+
 .form-container,
 .table-container 
 {
-  max-width: 700px;
-  margin: 0 auto;
+  /* max-width: 700px; */
+  margin: 10px;;
 }
 
 .form-container
@@ -164,4 +170,4 @@ color:pink;
 {
     margin-top:1em;
 }
-/*end of table of cars */
+/* end of table of cars */

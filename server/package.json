@@ -1,12 +1,12 @@
 {
-  "name": "server_session",
+  "name": "shoe_store",
   "version": "1.0.0",
-  "description": "Server-side sessions example",
+  "description": "e-commerce website to shop for shoes",
   "main": "server.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "author": "Derek O Reilly",
+  "author": "Ong ,Kosy and Raveena",
   "license": "ISC",
   "dependencies": {
     "bcrypt": "^5.0.1",

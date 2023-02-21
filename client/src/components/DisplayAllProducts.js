@@ -2,10 +2,10 @@ import React, {Component} from "react"
 import {Link} from "react-router-dom"
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import '@fortawesome/fontawesome-free/css/all.min.css';
-import { faCoffee } from '@fortawesome/free-solid-svg-icons';
+//import { faCartShopping, faCoffee } from '@fortawesome/free-solid-svg-icons';
 import { faHeart } from '@fortawesome/free-solid-svg-icons';
-
-
+import { faCartShopping } from '@fortawesome/free-solid-svg-icons';
+import { faUser } from '@fortawesome/free-solid-svg-icons';
 
 import axios from "axios"
 
@@ -86,7 +86,9 @@ export default class DisplayAllProducts extends Component
             <h3>Kids</h3>
             <input type="search" placeholder="Search"/>
             {/* <FontAwesomeIcon icon={faCoffee} /> */}
-            <FontAwesomeIcon icon={faHeart} />
+            <FontAwesomeIcon icon={faHeart} Style="font-size:250px;"/>
+            <FontAwesomeIcon icon={faCartShopping} />
+            <FontAwesomeIcon icon={faUser} />
             </div>
             <div className="form-container">
                 {localStorage.accessLevel >  ACCESS_LEVEL_GUEST ?
