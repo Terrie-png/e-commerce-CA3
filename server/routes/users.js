@@ -105,9 +105,8 @@ router.post(`/users/login/:email/:password`, (req,res) =>
 })
 
 
-router.post(`/users/logouts`, (req,res) =>
-{       
-    req.session.destroy()
+router.post(`/users/logout`, (req,res) =>
+{
     res.json({})
 })
 
