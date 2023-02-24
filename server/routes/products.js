@@ -3,11 +3,26 @@ const router = require(`express`).Router()
 const productsModel = require(`..\\models\\products.js`)
 
 const jwt = require('jsonwebtoken')
+const {data} = require("express-session/session/cookie");
+
+let products = require('../jsonformatter.json');
 
 //reset productd db
-router.post(`/resetDB` , (req,res)=>
+router.get(`/resetDB` , (req,res)=>
 {
 
+    productsModel.deleteMany({},(error,none)=>{
+        if(none) {
+            products.map((product) => {
+                productsModel.create(product, (err, data) => {
+                    if (err) {
+                        res.json(err)
+                    }
+                })
+
+            })
+        }
+    })
 })
 
 
@@ -27,7 +42,6 @@ router.get(`/products`, (req, res) =>
 router.get(`/products/:id`, (req, res) =>
 {
     jwt.verify(req.header.authorization, process.env.JWT_PRIVATE_KEY, {algorithm:"HS256"},(err,decodedToken) =>{
-
         if(err){
             res.json({errorMessage: `User is not logged in`})
         } else{

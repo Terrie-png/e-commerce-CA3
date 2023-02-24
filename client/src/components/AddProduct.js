@@ -16,6 +16,9 @@ export default class AddCar extends Component
         super(props)
 
         this.state = {
+            setBrand: ["NIKE", "HUSHPUPPIES","ADIDAS","Reebok","Vans"],
+            setGender: ["MEN","WOMEN","KIDS"],
+            setCategory:["RUNNING", "FOOTBALL","CASUAL","FORMAL"],
             name:"",
             brand:"",
             gender:"",

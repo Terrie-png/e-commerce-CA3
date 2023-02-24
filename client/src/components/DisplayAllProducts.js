@@ -13,7 +13,7 @@ import Logout from "./Logout"
 
 import {ACCESS_LEVEL_GUEST,ACCESS_LEVEL_ADMIN, SERVER_HOST} from "../config/global_constants"
 import ProductsCards from "./ProductsCards";
-
+import LinkInClass from "./LinkInClass";
 
 export default class DisplayAllProducts extends Component
 {
@@ -43,29 +43,40 @@ export default class DisplayAllProducts extends Component
                 }
             })
 
-    //     if(!this.state.products.length >0){
-    //         axios.post(`${SERVER_HOST}/resetDB`)
-    //             .then(res =>
-    //             {
-    //                 if(res.data)
-    //                 {
-    //                     if (res.data.errorMessage)
-    //                     {
-    //                         console.log(res.data.errorMessage)
-    //                     }
-    //                     else
-    //                     {
-    //                         console.log("Records read")
-    //                         this.setState({products: res.data})
-    //                     }
-    //                 }
-    //                 else
-    //                 {
-    //                     console.log("something wrong at the server side")
-    //                 }
-    //             })
-    //     }
+
     }
+
+    handleReset(e) {
+        // fetch(`jsonformatter.json`).then(res=>{
+        //     console.log(res.data);
+        // })
+        axios.get(`${SERVER_HOST}/resetDB`).then(res=>{
+            if(res.data) {
+                res.data.map((data) => console.log(data))
+            }
+        // })
+            //         axios.post(`${SERVER_HOST}/resetDB`)
+            //             .then(res =>
+            //             {
+            //                 if(res.data)
+            //                 {
+            //                     if (res.data.errorMessage)
+            //                     {
+            //                         console.log(res.data.errorMessage)
+            //                     }
+            //                     else
+            //                     {
+            //                         console.log("Records read")
+            //                         this.setState({products: res.data})
+            //                     }
+            //                 }
+            //                 else
+            //                 {
+            //                     console.log("something wrong at the server side")
+            //                 }
+                        })
+            //     }
+        }
 
 
     render()
@@ -109,7 +120,11 @@ export default class DisplayAllProducts extends Component
                     :
                     null
                 }
+                <div className="add-new-car" >
+                    <LinkInClass value="RESET" className="red-button" onClick={this.handleReset}/>
 
+
+                </div>
                 <div className="table-container">
                     <ProductsCards product={this.state.products} />
 
