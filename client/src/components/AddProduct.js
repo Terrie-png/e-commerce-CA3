@@ -112,17 +112,29 @@ export default class AddCar extends Component
 
                     <Form.Group controlId="gender">
                         <Form.Label>Gender</Form.Label>
-                        <Form.Control type="text" name="gender" value={this.state.gender} onChange={this.handleChange} />
+                 <select name="gender" value={this.state.gender} onChange={this.handleChange}>
+                        <option value="men">Men</option>
+                   <option value="women">Women</option>
+                    <option value="kids">Kids</option>
+                    </select>
                     </Form.Group>
 
                     <Form.Group controlId="category">
                         <Form.Label>Category</Form.Label>
-                        <Form.Control type="text" name="category" value={this.state.category} onChange={this.handleChange} />
+                        <select name="category" value={this.state.category} onChange={this.handleChange}>
+                   <option value="running">Running</option>
+                   <option value="football">Football</option>
+                    <option value="casual">Casual</option>
+                  <option value="formal">Formal</option>
+                   </select>
                     </Form.Group>
 
                     <Form.Group controlId="is_in_inventory">
                         <Form.Label>is_in_inventory</Form.Label>
-                        <Form.Control type="text" name="is_in_inventory" value={this.state.is_in_inventory} onChange={this.handleChange} />
+                        <select name="is_in_inventory" value={this.state.is_in_inventory} onChange={this.handleChange}>
+                   <option value="yes">Yes</option>
+                   <option value="no">No</option>
+                   </select>
                     </Form.Group>
 
                     <Form.Group controlId="items_left">
