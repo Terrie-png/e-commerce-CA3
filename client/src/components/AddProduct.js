@@ -23,40 +23,69 @@ export default class AddCar extends Component
             brand:"",
             gender:"",
             category:"",
-            is_in_inventory: null,
+            is_in_inventory:null,
+            price:0,
             items_left: 0,
             imageURL: null,
             slug:"",
-            redirectToDisplayAllProducts:localStorage.accessLevel < ACCESS_LEVEL_ADMIN
+            redirect: localStorage.accessLevel < ACCESS_LEVEL_ADMIN
         }
     }
-
 
     componentDidMount()
     {
         this.inputToFocus.focus()
     }
 
-
-    handleChange = (e) =>
+    onChangeName(e)
     {
-        this.setState({[e.target.name]: e.target.value})
+        this.setState({name: e.target.value})
+    }
+    onChangeBrand(e)
+    {
+        this.setState({brand: e.target.value})
+    }
+    onChangeGender(e)
+    {
+        this.setState({gender: e.target.value})
     }
 
-
-    handleFileChange = (e) =>
+    onChangeCategory(e)
     {
-        this.setState({selectedFile:e.target.files[0]})
+        this.setState({category: e.target.value})
     }
-
-    handleSubmit = (e) =>
+    onChangeIs_In_Inventory(e)
+    {
+        this.setState({is_in_inventory: e.target.value})
+    }
+    onChangePrice(e)
+    {
+        this.setState({price: e.target.value})
+    }
+    onChangeItems_Left(e)
+    {
+        this.setState({items_left: e.target.value})
+    }
+    onChangeSlug(e)
+    {
+        this.setState({slug: e.target.value})
+    }
+    onChangeImage(e)
+    {
+        if (e.target.files && e.target.files[0]) {
+          let img = e.target.files[0];
+          this.setState({
+            image: URL.createObjectURL(img)
+          });
+        }
+      };
+    onSubmit(e)
     {
         e.preventDefault()
 
         let formData = new FormData()
 
-        const productObject = {
-
+        const product = {
             name:this.state.name,
             brand:this.state.brand,
             gender:this.state.gender,
@@ -66,30 +95,25 @@ export default class AddCar extends Component
             imageURL: this.state.imageURL,
             slug:this.state.slug,
         }
-        let keys = Object.keys(productObject)
-        keys.map((o) => formData.append(o,productObject[o]))
-        formData.append("profilePhoto", this.state.selectedFile)
-        // needed for sessions to work
-        axios.post(`${SERVER_HOST}/products`,formData,{headers:{"authorization":localStorage.token,"Content-type":"multipart/form-data"}})
-            .then(res =>
-            {
-                if(res.data)
-                {
-                    if (res.data.errorMessage)
-                    {
-                        console.log(res.data.errorMessage)
-                    }
-                    else
-                    {
-                        console.log("Record added")
-                        this.setState({redirectToDisplayAllCars:true})
-                    }
-                }
-                else
-                {
-                    console.log("Record not added")
-                }
-            })
+
+        // axios.post(`${SERVER_HOST}/products/add`, product)
+        // .then(res => console.log(res.data))
+
+        axios.post(`${SERVER_HOST}/products/add`, product, {headers:{"authorization":localStorage.token}})
+        .then(res => console.log(res.data))
+
+        this.setState({
+            name: "",
+            brand:"",
+            gender:"",
+            category:"",
+            is_in_inventory:"",
+            price:"",
+            items_left:"",
+            slug:"",
+            image: "",
+            redirect: true
+        })
     }
 
 
