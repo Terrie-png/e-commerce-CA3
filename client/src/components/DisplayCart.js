@@ -18,7 +18,7 @@ export default class DisplayCart extends Component{
 
     componentDidMount() {
          // needed for sessions to work
-        axios.get(`${SERVER_HOST}/carts/${this.props.match.param.id}`,{headers:{"authorization":localStorage.token}})
+        axios.get(`${SERVER_HOST}/carts`,{headers:{"authorization":localStorage.token}})
             .then(res =>
             {
                 if(res.data)
@@ -44,14 +44,6 @@ export default class DisplayCart extends Component{
         return(
             <div className="table-container">
                 <ProductsTable product={this.state.products} />
-
-                {localStorage.accessLevel >= ACCESS_LEVEL_ADMIN ?
-                    <div className="add-new-car">
-                        <Link className="blue-button" to={"/AddCar"}>Add New Car</Link>
-                    </div>
-                    :
-                    null
-                }
             </div>
         )
     }

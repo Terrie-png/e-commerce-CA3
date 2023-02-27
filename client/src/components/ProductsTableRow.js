@@ -19,9 +19,9 @@ export default class ProductsTableRow extends Component
                 <td>{this.props.product.items_left}</td>
                 <td>{this.props.product.slug}</td>
                 <td>
-                    {sessionStorage.accessLevel > ACCESS_LEVEL_GUEST ? <Link className="green-button" to={"/EditProduct/" + this.props.product._id}>Edit</Link> : null}
 
-                    {sessionStorage.accessLevel >= ACCESS_LEVEL_ADMIN ? <Link className="red-button" to={"/DeleteProduct/" + this.props.product._id}>Delete</Link> : null}
+
+                    {localStorage.accessLevel >= ACCESS_LEVEL_ADMIN ? <Link className="red-button" to={"/DeleteCartProduct/" + this.props.product._id}>Delete</Link> : null}
                 </td>
             </tr>
         )

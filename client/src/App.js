@@ -14,7 +14,8 @@ import DisplayAllProducts from "./components/DisplayAllProducts";
 import EditProduct from "./components/EditProduct";
 import DeleteProduct from "./components/DeleteProduct";
 import DisplayCart from "./components/DisplayCart";
-import AddProduct from "./components/AddProduct"
+import AddProduct from "./components/AddProduct";
+import DeleteCart from "./components/DeleteCartProducts";
 
 import {ACCESS_LEVEL_GUEST} from "./config/global_constants"
 
@@ -45,7 +46,9 @@ export default class App extends Component
                     <LoggedInRoute exact path="/AddProduct" component={AddProduct}/>
                     <LoggedInRoute exact path="/EditProduct/:id" component={EditProduct} />
                     <LoggedInRoute exact path="/DeleteProduct/:id" component={DeleteProduct} />
+                    <LoggedInRoute exact path="/DeleteCartProducts" component={DeleteCart}/>
                     <LoggedInRoute exact path="/Carts/:id" component={DisplayCart}/>
+                    <LoggedInRoute exact="/DisplayCart" component={DisplayCart}/>
                     <Route exact path="/DisplayAllProducts" component={DisplayAllProducts}/>
                     <Route path="*" component={DisplayAllProducts}/>
                 </Switch>
