@@ -56,11 +56,11 @@
 // //
 //         this.setState({ wasSubmittedAtLeastOnce: true });
 // //
-         
+
 
 //         let formData = new FormData()
-        
-        
+
+
 //             const productObject = {
 
 //                 name:this.state.name,
@@ -78,8 +78,8 @@
 //             let keys = Object.keys(productObject)
 //             keys.map((o) => formData.append(o,productObject[o]))
 //             formData.append("profilePhoto", this.state.selectedFile)
-        
-    
+
+
 //         // needed for sessions to work
 //         axios.post(`${SERVER_HOST}/products`,formData,{headers:{"authorization":localStorage.token,"Content-type":"multipart/form-data"}})
 //             .then(res =>
@@ -110,7 +110,7 @@
 //         if(this.state.wasSubmittedAtLeastOnce)
 //         {
 //             errorMessage = <div className="error">Product Details are incorrect<br/></div>;
-//         }   
+//         }
 //         // let gender1;
 //         //             if (!this.state.gender1) {
 //         //             gender1 = ""
@@ -128,13 +128,13 @@
 //         //             items_left1 = ""
 //         //             } else {
 //         //             items_left1= this.items_left
-//         //             }    
+//         //             }
 //         // let imageURL1;
 //         //             if (!this.imageURL) {
 //         //             imageURL1 = ""
 //         //             } else {
 //         //             imageURL1= this.items_left
-//         //             }            
+//         //             }
 //         return (
 //             <div className="form-container">
 //                 {this.state.redirectToDisplayAllProducts ? <Redirect to="/DisplayAllProducts"/> : null}
@@ -149,11 +149,11 @@
 //                         <Form.Label>Brand</Form.Label>
 //                         <Form.Control type="text" name="brand" value={this.state.brand} onChange={this.handleChange} />
 //                     </Form.Group>
-                    
+
 
 //                     <Form.Group controlId="gender">
 //                         <Form.Label>Gender</Form.Label>
-                        
+
 //                  <select name="gender" value={this.state.gender} onChange={this.handleChange}>
 //                         <option value="men">Men</option>
 //                    <option value="women">Women</option>
@@ -227,13 +227,14 @@ export default class AddProducts extends Component
             brand:"",
             gender:"",
             category:"",
-            is_in_inventory:true,
+            is_in_inventory:null,
             price:0,
             items_left: 0,
             imageURL: null,
             slug:"",
-            redirect: localStorage.accessLevel < ACCESS_LEVEL_ADMIN
+            redirectToDisplayAllProducts:localStorage.accessLevel < ACCESS_LEVEL_ADMIN
         }
+    }
 
         this.onChangeName = this.onChangeName.bind(this)
         this.onChangeBrand = this.onChangeBrand.bind(this)
@@ -247,19 +248,18 @@ export default class AddProducts extends Component
         this.onSubmit = this.onSubmit.bind(this)
     }
 
-    onChangeName(e)
+
+    handleChange = (e) =>
     {
-        this.setState({name: e.target.value})
+        this.setState({[e.target.name]: e.target.value})
     }
-    onChangeBrand(e)
+
+
+    handleFileChange = (e) =>
     {
-        this.setState({brand: e.target.value})
+        this.setState({selectedFile:e.target.files[0]})
     }
-    onChangeGender(e)
-    {
-        this.setState({gender: e.target.value})
-    }
-     
+
     onChangeCategory(e)
     {
         this.setState({category: e.target.value})
@@ -293,36 +293,43 @@ export default class AddProducts extends Component
     {
         e.preventDefault()
 
+        let formData = new FormData()
+
         const product = {
-            name: this.state.name,
-            brand: this.state.brand,
-            gender: this.state.gender,
-            category: this.state.category,
+            name:this.state.name,
+            brand:this.state.brand,
+            gender:this.state.gender,
+            category:this.state.category,
             is_in_inventory: this.state.is_in_inventory,
             price: this.state.price,
             items_left:this.state.items_left,
             slug:this.state.slug,
             image: this.state.image
         }
-
-        // axios.post(`${SERVER_HOST}/products/add`, product)
-        // .then(res => console.log(res.data))
-
-        axios.post(`${SERVER_HOST}/products/add`, product, {headers:{"authorization":localStorage.token}})
-        .then(res => console.log(res.data))
-
-        this.setState({
-            name: "",
-            brand:"",
-            gender:"",
-            category:"",
-            is_in_inventory:"",
-            price:"",
-            items_left:"",
-            slug:"",
-            image: "",
-            redirect: true
-        })
+        let keys = Object.keys(productObject)
+        keys.map((o) => formData.append(o,productObject[o]))
+        formData.append("profilePhoto", this.state.selectedFile)
+        // needed for sessions to work
+        axios.post(`${SERVER_HOST}/products`,formData,{headers:{"authorization":localStorage.token,"Content-type":"multipart/form-data"}})
+            .then(res =>
+            {
+                if(res.data)
+                {
+                    if (res.data.errorMessage)
+                    {
+                        console.log(res.data.errorMessage)
+                    }
+                    else
+                    {
+                        console.log("Record added")
+                        this.setState({redirectToDisplayAllCars:true})
+                    }
+                }
+                else
+                {
+                    console.log("Record not added")
+                }
+            })
     }
 
     render()
@@ -419,4 +426,3 @@ export default class AddProducts extends Component
         )
     }
 }
- 
