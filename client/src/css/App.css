@@ -5,10 +5,12 @@ h2{
 h1{
     background-color: black;
     color:white;
+    font-size:50px;
 }
 h3{
     
     color:white;
+    font-size:20px;
 
 }
 
@@ -35,6 +37,7 @@ h3{
 {
     display:flex;
 flex-wrap:wrap;
+    justify-content: space-around;
 }
 
 .form-container,
@@ -59,7 +62,24 @@ flex-wrap:wrap;
 {
     margin-bottom:30px;
 }
+.image-container {
+    position: relative;
+}
 
+.add-to-cart {
+    position: absolute;
+    bottom: 10px;
+    right: 10px;
+    background-color: #fff;
+    border: 1px solid #000;
+    padding: 5px 10px;
+    cursor: pointer;
+    display: none;
+}
+
+.image-container:hover .add-to-cart {
+    display: block;
+}
 /* link buttons */
 .green-button,
 .red-button,

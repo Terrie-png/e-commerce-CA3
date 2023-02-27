@@ -8,7 +8,12 @@ import { faHeart } from '@fortawesome/free-solid-svg-icons';
 import { faCartShopping } from '@fortawesome/free-solid-svg-icons';
 import { faUser } from '@fortawesome/free-solid-svg-icons';
 import {Link} from "react-router-dom";
+
 export default class header extends Component{
+
+    handleClick = () => {
+        window.location.href = "/Login";
+    }
     render(){
         return(
                 <div id="cd">
@@ -24,10 +29,12 @@ export default class header extends Component{
                         <FontAwesomeIcon icon={faCartShopping} />
                     </Link>
                     {/*for user profile*/}
-                    <Link to={"/"}>
-                        <FontAwesomeIcon icon={faUser} />
+                    <Link  className="green-button" to={"/Login"}>
+                        <FontAwesomeIcon icon={faUser} onClick={this.handleClick} />
                     </Link>
+
                 </div>
+
 
         )
     }
