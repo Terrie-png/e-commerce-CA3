@@ -1,7 +1,7 @@
 import React, {Component} from "react"
 import {Link} from "react-router-dom"
 //import { faCartShopping, faCoffee } from '@fortawesome/free-solid-svg-icons';
-
+// import logo from '../images/water2.jpg';
 
 import axios from "axios"
 
@@ -11,6 +11,7 @@ import {ACCESS_LEVEL_GUEST,ACCESS_LEVEL_ADMIN, SERVER_HOST} from "../config/glob
 import ProductsCards from "./ProductsCards";
 import LinkInClass from "./LinkInClass";
 import Header from "./header";
+import logo from "../images/water1.jpg";
 
 
 export default class DisplayAllProducts extends Component
@@ -52,6 +53,9 @@ export default class DisplayAllProducts extends Component
         }
 
 
+
+
+
     render()
     {
         return (
@@ -63,6 +67,10 @@ export default class DisplayAllProducts extends Component
             <Header/>
             <h2> </h2>
                 <header/>
+
+                <div>
+                    <img src={logo}  height="700px" width="1500px"/>
+                </div>
             <div className="form-container">
                 {localStorage.accessLevel >  ACCESS_LEVEL_GUEST ?
                     <div className="logout">   
@@ -70,7 +78,7 @@ export default class DisplayAllProducts extends Component
                     </div>
                     :
                     <div>
-                        <Link className="green-button" to={"/Login"}>Login</Link>
+                        {/*<Link className="green-button" to={"/Login"}>Login</Link>*/}
                         <Link className="blue-button" to={"/Register"}>Register</Link>
                         <Link className="red-button" to={"/ResetDatabase"}>Reset Database</Link>  <br/><br/><br/></div>
                 }

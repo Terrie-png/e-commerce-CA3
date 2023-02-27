@@ -232,7 +232,7 @@ export default class AddProducts extends Component
             items_left: 0,
             imageURL: null,
             slug:"",
-            redirect: localStorage.accessLevel < ACCESS_LEVEL_ADMIN
+            redirectToDisplayAllProducts:localStorage.accessLevel < ACCESS_LEVEL_ADMIN
         }
 
         this.onChangeName = this.onChangeName.bind(this)

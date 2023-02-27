@@ -155,66 +155,8 @@
     "imageURL": "https://static.nike.com/a/images/t_PDP_864_v1/f_auto,b_rgb:f5f5f5/33888130-0320-41a1-ba53-a026decd8aa2/joyride-dual-run-big-kids-running-shoe-1HDJF8.jpg",
     "slug": "nike-joyride-dual-run"
   },
-   {
-    "id": 14,
-    "name": "Nike Renew Run",
-    "brand": "NIKE",
-    "gender": "KIDS",
-    "category": "RUNNING",
-    "price": 80,
-    "is_in_inventory": true,
-    "items_left": 3,
-    "imageURL": "https://static.nike.com/a/images/c_limit,w_592,f_auto/t_product_v1/i1-73e54c0b-11a6-478b-9f90-bd97fcde872d/renew-run-big-kids-running-shoe-5Bpz93.jpg",
-    "slug": "nike-renew-run"
-  },
-   {
-    "id": 16,
-    "name": "Bridgport Advice",
-    "brand": "HUSHPUPPIES",
-    "gender": "MEN",
-    "category": "FORMAL",
-    "price": 30,
-    "is_in_inventory": true,
-    "items_left": 4,
-    "imageURL": "https://cdn.shopify.com/s/files/1/0016/0074/9623/products/BRIDGPORT_ADVICE-BLACK_1_800x800.jpg?v=1576567903",
-    "slug": "bridgport-advice"
-  },
-   {
-    "id": 15,
-    "name": "Beck",
-    "brand": "HUSHPUPPIES",
-    "gender": "MEN",
-    "category": "FORMAL",
-    "price": 80,
-    "is_in_inventory": true,
-    "items_left": 5,
-    "imageURL": "https://cdn.shopify.com/s/files/1/0016/0074/9623/products/Beck-Black_800x800.jpg",
-    "slug": "beck"
-  },
-   {
-    "id": 17,
-    "name": "Fester",
-    "brand": "HUSHPUPPIES",
-    "gender": "MEN",
-    "category": "FORMAL",
-    "price": 70,
-    "is_in_inventory": true,
-    "items_left": 6,
-    "imageURL": "https://cdn.shopify.com/s/files/1/0016/0074/9623/products/fester-Tan_800x800.jpg?v=1575537531",
-    "slug": "fester"
-  },
-   {
-    "id": 18,
-    "name": "Pixel",
-    "brand": "HUSHPUPPIES",
-    "gender": "MEN",
-    "category": "FORMAL",
-    "price": 75,
-    "is_in_inventory": true,
-    "items_left": 7,
-    "imageURL": "https://cdn.shopify.com/s/files/1/0016/0074/9623/products/PIXEL-TAN_800x800.jpg?v=1577420506",
-    "slug": "pixel"
-  },
+
+
    {
     "id": 19,
     "name": "Austin",
