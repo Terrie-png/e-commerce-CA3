@@ -48,7 +48,7 @@ export default class App extends Component
                     <LoggedInRoute exact path="/DeleteProduct/:id" component={DeleteProduct} />
                     <LoggedInRoute exact path="/DeleteCartProducts" component={DeleteCart}/>
                     <LoggedInRoute exact path="/Carts/:id" component={DisplayCart}/>
-                    <LoggedInRoute exact="/DisplayCart" component={DisplayCart}/>
+                    <LoggedInRoute exact path="/DisplayCart" component={DisplayCart}/>
                     <Route exact path="/DisplayAllProducts" component={DisplayAllProducts}/>
                     <Route path="*" component={DisplayAllProducts}/>
                 </Switch>
