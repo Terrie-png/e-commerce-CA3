@@ -1,11 +1,11 @@
 const router = require(`express`).Router()
 
-const productsModel = require(`..\\models\\products.js`)
-
 const jwt = require('jsonwebtoken')
 const {data} = require("express-session/session/cookie");
 
 let products = require('../jsonformatter.json');
+
+const productsModel = require('../models/products');
 
 //reset productd db
 router.get(`/resetDB` , (req,res)=>
@@ -54,21 +54,24 @@ router.get(`/products/:id`, (req, res) =>
 })
 
 // Add new record
-router.post(`/products`, (req, res) =>
-{
-    jwt.verify(req.headers.authorization, process.env.JWT_PRIVATE_KEY, {algorithm: "HS256"}, (err, decodedToken) => {
-        if (err) {
-            res.json({errorMessage: `User is not logged in`})
-        } else {
-            if (decodedToken.accessLevel >= process.env.ACCESS_LEVEL_ADMIN) {
-                productsModel.create(req.body, (error, data) => {
-                    res.json(data)
-                })
+router.post('/products/add', (req, res) => {
+
+        jwt.verify(req.headers.authorization, process.env.JWT_PRIVATE_KEY, {algorithm: "HS256"}, (err, decodedToken) => {
+            if (err) {
+                res.json({errorMessage: `User is not logged in`})
             } else {
-                res.json({errorMessage: `User is not an administrator, so they cannot add new records`})
-            }
-        }
+                if (decodedToken.accessLevel >= process.env.ACCESS_LEVEL_ADMIN) {
+                    productsModel.create(req.body, (error,data) => 
+    {
+        
+        res.json(data)
     })
+                } else {
+                    res.json({errorMessage: `User is not an administrator, so they cannot add new records`})
+                }
+            }
+        })
+    
 })
 
 
@@ -106,3 +109,15 @@ router.delete(`/products/:id`, (req, res) =>
 })
 
 module.exports = router
+
+
+
+
+// router.post('/products/add', (req, res) => {
+//     productsModel.create(req.body, (error,data) => 
+//     {
+//         res.json(data)
+//     })
+// });
+
+// module.exports = router;

@@ -103,7 +103,7 @@ export default class DisplayAllProducts extends Component
             </div>
             <div className="form-container">
                 {localStorage.accessLevel >  ACCESS_LEVEL_GUEST ?
-                    <div className="logout">
+                    <div className="logout">   
                         <Logout/>
                     </div>
                     :

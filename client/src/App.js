@@ -24,6 +24,7 @@ if (typeof localStorage.accessLevel === "undefined")
     localStorage.name = "GUEST"
     localStorage.accessLevel = ACCESS_LEVEL_GUEST
     localStorage.token = null
+    
 
 }
 
