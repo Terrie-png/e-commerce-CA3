@@ -35,16 +35,33 @@ router.post(`/carts`, (req, res) =>
     jwt.verify(req.headers.authorization, process.env.JWT_PRIVATE_KEY, {algorithm: "HS256"}, (err, decodedToken) => {
         if(err)
         {
-            res.json({errorMessage:`User is not logged in`})
+            res.json({errorMessage:`User is not logged in or User token is expired`})
         }
         else
         {
             if(decodedToken.accessLevel >= process.env.ACCESS_LEVEL_NORMAL_USER) {
-                usersModel.findOne({email: req.session.user.email}, (error, user) => {
-                    req.body.userID = user._id
-                    cartsModel.create(req.body, (error, data) => {
-                        res.json(data)
-                    })
+                usersModel.findOne({email: decodedToken.email}, (error, user) => {
+                    if(error){
+                        res.json({errorMessage:error})
+                    }else{
+                        cartsModel.findOne({productID:req.body.productID,userID:user._id},(error2,result)=>{
+                            if(error){
+                                console.log(error)
+                            } else{
+                                if(result != null){
+                                    let num = result.quantity + 1;
+                                    let item = {quantity: num}
+                                    cartsModel.findByIdAndUpdate(result._id, {$set : item}, (error3, res2) =>{
+                                        res.json(res2)
+                                    })
+                                }  else {
+                                   cartsModel.create({productID:req.body.productID,userID:user._id,quantity:1},(error4,res3)=>{
+                                       res.json(res3)
+                                   })
+                                }
+                            }
+                        })
+                    }
                 })
             }
             else
@@ -66,7 +83,6 @@ router.put(`/carts/:id`, (req, res) =>
         }
         else
         {
-            
             cartsModel.findByIdAndUpdate(req.params.id, {$set: req.body}, (error, data) =>
             {
                 res.json(data)
