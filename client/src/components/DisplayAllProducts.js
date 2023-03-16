@@ -1,7 +1,11 @@
 import React, {Component} from "react"
 import {Link} from "react-router-dom"
-//import { faCartShopping, faCoffee } from '@fortawesome/free-solid-svg-icons';
-// import logo from '../images/water2.jpg';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import '@fortawesome/fontawesome-free/css/all.min.css';
+// import headerLogo from '\images\yelow.jpg';
+import { faHeart } from '@fortawesome/free-solid-svg-icons';
+import { faCartShopping } from '@fortawesome/free-solid-svg-icons';
+import { faUser } from '@fortawesome/free-solid-svg-icons';
 
 import axios from "axios"
 
@@ -91,12 +95,12 @@ export default class DisplayAllProducts extends Component
                 </div>
             <div className="form-container">
                 {localStorage.accessLevel >  ACCESS_LEVEL_GUEST ?
-                    <div className="logout">   
+                    <div className="logout">
                         <Logout/>
                     </div>
                     :
                     <div>
-                        {/*<Link className="green-button" to={"/Login"}>Login</Link>*/}
+                        <Link className="green-button" to={"/Login"}>Login</Link>
                         <Link className="blue-button" to={"/Register"}>Register</Link>
                         <Link className="red-button" to={"/ResetDatabase"}>Reset Database</Link>  <br/><br/><br/></div>
                 }

@@ -57,7 +57,10 @@ flex-wrap:wrap;
     background: #f7f7f7;
 }
 
-
+.logo{
+width:auto;
+height:auto;
+}
 .logout
 {
     margin-bottom:30px;
