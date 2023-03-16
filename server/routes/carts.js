@@ -12,18 +12,20 @@ router.get(`/carts`, (req, res) =>
         if (err) {
             res.json({errorMessage: `User is not logged in`})
         } else {
-            usersModel.find(decodedToken.email,(error, user)=>
-                cartsModel.find(user._id, (error, data) => {
-                    let result = [];
-                    data.map((id) =>
-                        productsModel.findById(id.productID, (error, cart) => {
-                            cart.push(id.quantity);
-                            cart.push(id._id);
-                            result.push(cart);
-                        }))
+            usersModel.findOne({email:decodedToken.email},(error, user)=> {
 
-                    res.json(result);
-                })
+                    cartsModel.find({_id:user._id}, (error, data) => {
+                        let result = [];
+                        console.log(data)
+                        data.map((id) =>
+                            productsModel.findById(id.productID, (error, cart) => {
+                                cart.push(id.quantity);
+                                cart.push(id._id);
+                                result.push(cart);
+                            }))
+                        res.json(result);
+                    })
+                }
             )
         }
     })
