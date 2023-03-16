@@ -11,17 +11,22 @@ import {Link} from "react-router-dom";
 
 export default class header extends Component{
 
+    constructor(props) {
+        super(props);
+    }
     handleClick = () => {
         window.location.href = "/Login";
     }
+
+
     render(){
         return(
                 <div id="cd">
-                    <h1>KORs</h1>
-                    <h3>Women</h3>
-                    <h3>Men</h3>
-                    <h3>Kids</h3>
-                    <input type="search" placeholder="Search"/>
+                    <Link to={"/DisplayAllProducts"}><h1>KORs</h1></Link>
+                    <h3 onClick={this.props.handleWomenFilter}>Women</h3>
+                    <h3 onClick={this.props.handleMenFilter}>Men</h3>
+                    <h3 onClick={this.props.handleKidsFilter}>Kids</h3>
+                    <input  type="search" placeholder="Search"/>
                     {/* <FontAwesomeIcon icon={faCoffee} /> */}
                     <FontAwesomeIcon icon={faHeart} Style="font-size:250px;"/>
                     {/*for shopping cart*/}

@@ -23,7 +23,7 @@ export default class ProductsTable extends Component
                 </thead>
 
                 <tbody>
-                {this.props.product.map((product) => <ProductsTableRow key={product._id} product={product}/>)}
+                {this.props.carts.map((product) => <ProductsTableRow key={product._id} product={product}/>)}
                 </tbody>
             </table>
         )

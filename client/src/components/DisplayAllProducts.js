@@ -16,26 +16,28 @@ import logo from "../images/water1.jpg";
 
 export default class DisplayAllProducts extends Component
 {
+    filtered;
     constructor(props)
     {
         super(props)
 
         this.state = {
-            products:[]
+            products:[],
+            selectedProducts: []
         }
     }
 
 
-    componentDidMount() {
+     componentDidMount() {
         // needed for sessions to work
-        axios.get(`${SERVER_HOST}/products`)
+         axios.get(`${SERVER_HOST}/products`)
             .then(res => {
                 if (res.data) {
                     if (res.data.errorMessage) {
                         console.log(res.data.errorMessage)
                     } else {
                         console.log("Records read")
-                        this.setState({products: res.data})
+                        this.setState({products: res.data, selectedProducts:res.data})
                     }
                 } else {
                     console.log("Record not found")
@@ -53,6 +55,22 @@ export default class DisplayAllProducts extends Component
         }
 
 
+    handleWomenFilter = async () => {
+         this.filtered = this.state.products.filter(product => product.gender === "WOMEN");
+        await this.setState({selectedProducts: this.filtered})
+    }
+
+    handleMenFilter = async () => {
+        this.filtered = this.state.products.filter(product => product.gender === "MEN");
+        await this.setState({selectedProducts: this.filtered})
+    }
+
+
+    handleKidsFilter = async () => {
+        this.filtered = this.state.products.filter(product => product.gender === "KIDS");
+        await this.setState({selectedProducts: this.filtered})
+    }
+
 
 
 
@@ -64,7 +82,7 @@ export default class DisplayAllProducts extends Component
                 </head>
             <body>
             <div id="ab">
-            <Header/>
+            <Header selectedProducts={this.state.selectedProducts} handleWomenFilter={this.handleWomenFilter} handleMenFilter={this.handleMenFilter} handleKidsFilter={this.handleKidsFilter} />
             <h2> </h2>
                 <header/>
 
@@ -96,7 +114,7 @@ export default class DisplayAllProducts extends Component
 
                 </div>
                 <div className="table-container">
-                    <ProductsCards product={this.state.products} />
+                    <ProductsCards product={this.state.selectedProducts} />
 
 
                 </div>

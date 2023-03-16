@@ -43,7 +43,7 @@ export default class DisplayCart extends Component{
     render() {
         return(
             <div className="table-container">
-                <ProductsTable product={this.state.products} />
+                <ProductsTable carts={this.state.carts} />
             </div>
         )
     }
