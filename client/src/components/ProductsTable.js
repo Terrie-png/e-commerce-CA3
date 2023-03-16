@@ -4,6 +4,7 @@ import ProductsTableRow from "./ProductsTableRow"
 
 export default class ProductsTable extends Component
 {
+
     render()
     {
         return (
@@ -23,7 +24,12 @@ export default class ProductsTable extends Component
                 </thead>
 
                 <tbody>
-                {this.props.carts.map((product) => <ProductsTableRow key={product._id} product={product}/>)}
+                {this.props.carts.map((product) => {
+                    if(product == null){
+                       console.log("null")
+                    } else{
+                        return <ProductsTableRow key={product._id} product={product}/>
+                }})}
                 </tbody>
             </table>
         )
