@@ -46,7 +46,7 @@ let productsSchema = new mongoose.Schema(
             price: {type: Number},
             is_in_inventory: {type:Boolean},
             items_left: {type:Number},
-            imageURL: {type:String ,default:""},
+            imageURL: {type:String ,default:"https://cdn1.iconfinder.com/data/icons/lagotline-shoes-specification/64/Shoes_Specification-27-1024.png"},
             slug: {type: String}
         
    },

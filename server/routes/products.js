@@ -54,26 +54,32 @@ router.get(`/products/:id`, (req, res) =>
 })
 
 // Add new record
-router.post('/products/add', (req, res) => {
+// router.post('/products/add', (req, res) => {
 
-        jwt.verify(req.headers.authorization, process.env.JWT_PRIVATE_KEY, {algorithm: "HS256"}, (err, decodedToken) => {
-            if (err) {
-                res.json({errorMessage: `User is not logged in`})
-            } else {
-                if (decodedToken.accessLevel >= process.env.ACCESS_LEVEL_ADMIN) {
-                    productsModel.create(req.body, (error,data) => 
-    {
+//         jwt.verify(req.headers.authorization, process.env.JWT_PRIVATE_KEY, {algorithm: "HS256"}, (err, decodedToken) => {
+//             if (err) {
+//                 res.json({errorMessage: `User is not logged in`})
+//             } else {
+//                 if (decodedToken.accessLevel >= process.env.ACCESS_LEVEL_ADMIN) {
+//                     productsModel.create(req.body, (error,data) => 
+//     {
         
+//         res.json(data)
+//     })
+//                 } else {
+//                     res.json({errorMessage: `User is not an administrator, so they cannot add new records`})
+//                 }
+//             }
+//         })
+    
+// })
+router.post(`/products/add`, (req, res) => {
+    productsModel.create(req.body, (error, data) => {
+        console.log(error)
         res.json(data)
     })
-                } else {
-                    res.json({errorMessage: `User is not an administrator, so they cannot add new records`})
-                }
-            }
-        })
-    
-})
 
+})
 
 // Update one record
 router.put(`/products/:id`, (req, res) =>
