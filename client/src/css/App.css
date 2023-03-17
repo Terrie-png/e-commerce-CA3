@@ -1,16 +1,37 @@
-h2{
-   background-color: burlywood;
-   padding:15px; 
+/*h2{*/
+/*   background-color: burlywood;*/
+/*   padding:15px;*/
+/*}*/
+body{
+    margin-left: auto;
+    margin-right: auto;
+    border-radius: 5px;
 }
 h1{
-    background-color: black;
+
     color:white;
-    font-size:50px;
+    font-size:30px;
+    align-items: left;
 }
 h3{
     
     color:white;
-    font-size:20px;
+    font-size:15px;
+
+}
+/*.jk*/
+/*{*/
+/*    width:80px;*/
+/*}*/
+
+#jk
+{
+
+    color:white;
+    background-color: burlywood;
+    size:10px;
+      text-align: center;
+    height:40px;
 
 }
 
@@ -23,14 +44,26 @@ h3{
 }
 #cd
 {
-    background-color: black;;
+    background-color: black;
     text-align: left;
+    align-items: flex-start;
     display:flex;
     flex-direction: row;
     justify-content: space-around;
-    align-items:left;
-    size:30px;
+    /*align-self:left;*/
+    size:60px;
+    height:40px;
     color:white;
+}
+
+#mn
+{
+
+    background-size:cover;
+    width:200px;
+    /*height: 100vh; !* set the height of the header to fill the viewport *!*/
+
+
 }
 
 .cards

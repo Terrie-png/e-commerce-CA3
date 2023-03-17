@@ -63,7 +63,7 @@ export default class ProductCard extends Component
 
 
                 </div>
-                <div>{this.props.product.slug}</div>
+                {/*<div>{this.props.product.slug}</div>*/}
                 {/*<AddCart productID={this.props.product}/>*/}
                 {localStorage.accessLevel === ACCESS_LEVEL_NORMAL_USER? <button onClick={this.addCart}> Add to Shopping cart </button>:null}
                 <div>{this.props.product.name}</div>

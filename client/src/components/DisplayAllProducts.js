@@ -16,7 +16,9 @@ import ProductsCards from "./ProductsCards";
 import LinkInClass from "./LinkInClass";
 import Header from "./header";
 import Footer from "./footer";
-import logo from "../images/water1.jpg";
+import Head from "./head";
+import Pictures from "./pictures";
+// import logo from "../images/water1.jpg";
 
 
 export default class DisplayAllProducts extends Component
@@ -83,16 +85,18 @@ export default class DisplayAllProducts extends Component
     {
         return (
             <div>
-                <head>
-                </head>
+
             <body>
             <div id="ab">
+                <div id="jk">
+               <Head /></div>
             <Header selectedProducts={this.state.selectedProducts} handleWomenFilter={this.handleWomenFilter} handleMenFilter={this.handleMenFilter} handleKidsFilter={this.handleKidsFilter} />
-            <h2> </h2>
-                <header/>
 
-                <div>
-                    <img src={logo}  height="700px" width="1500px"/>
+                {/*<header/>*/}
+
+                <div id="mn">
+                    <Pictures/>
+                    {/*<img src={logo}  height="700px" width="1500px"/>*/}
                 </div>
             <div className="form-container">
                 {localStorage.accessLevel >  ACCESS_LEVEL_GUEST ?
