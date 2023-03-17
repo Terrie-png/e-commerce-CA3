@@ -69,7 +69,7 @@ export default class ProductCard extends Component
                 <div>{this.props.product.name}</div>
                 {/*<div>{this.props.product.brand}</div>*/}
                 <div> {this.props.product.gender}</div>
-                <div> {this.props.product.category}</div>
+                {/* <div> {this.props.product.category}</div> */}
                 <div>{this.props.product.price}</div>
                 {/*<div>{this.props.product.is_in_inventory}</div>*/}
                 {/*<div> {this.props.product.items_left}</div>*/}

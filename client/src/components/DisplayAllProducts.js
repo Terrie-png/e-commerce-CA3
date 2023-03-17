@@ -15,6 +15,7 @@ import {ACCESS_LEVEL_GUEST,ACCESS_LEVEL_ADMIN, SERVER_HOST} from "../config/glob
 import ProductsCards from "./ProductsCards";
 import LinkInClass from "./LinkInClass";
 import Header from "./header";
+import Footer from "./footer";
 import logo from "../images/water1.jpg";
 
 
@@ -122,6 +123,7 @@ export default class DisplayAllProducts extends Component
 
 
                 </div>
+                <Footer/>
             </div>
             </div>
             </body>

@@ -67,7 +67,7 @@ router.post(`/carts`, (req, res) =>
             }
             else
             {
-                res.json({errorMessage:`User is not a customer, so they cannot add new records`})
+                res.json({errorMessage:`User is not a customer, so they cannot add new items`})
             }
         }
     })
