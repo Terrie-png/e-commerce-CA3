@@ -18,6 +18,7 @@ import Header from "./header";
 import Footer from "./footer";
 import Head from "./head";
 import Pictures from "./pictures";
+import Include from "./include";
 // import logo from "../images/water1.jpg";
 
 
@@ -127,6 +128,7 @@ export default class DisplayAllProducts extends Component
 
 
                 </div>
+                <Include/>
                 <Footer/>
             </div>
             </div>

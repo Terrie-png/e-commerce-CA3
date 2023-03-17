@@ -227,3 +227,38 @@ color:pink;
     margin-top:1em;
 }
 /* end of table of cars */
+
+.middle{
+    position: relative;
+    width: 100%;
+    padding-bottom: 30px;
+}
+
+.middleImage {
+    width: 100%;
+}
+
+.middleContainer {
+    position: absolute;
+    top: 50%;
+    right: 0;
+    transform: translateY(-50%);
+    padding: 20px;
+    color: white;
+    background-color: rgba(0, 0, 0, 0.5);
+}
+
+.middleText {
+    font-size: 36px;
+    margin: 0;
+    line-height: 1.2;
+}
+
+.middleSubtext {
+    font-size: 18px;
+    margin: 0;
+    line-height: 1.5;
+    color:black;
+    width:60px;
+    background-color: white;
+}
