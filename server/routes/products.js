@@ -7,6 +7,10 @@ let products = require('../jsonformatter.json');
 
 const productsModel = require('../models/products');
 
+const fs = require('fs');
+const multer = require('multer');
+const upload = multer({dest:`${process.env.UPLOADED_FILES_FOLDER}`})
+const emptyFolder = require('empty-folder')
 //reset productd db
 router.get(`/resetDB` , (req,res)=>
 {
@@ -17,6 +21,11 @@ router.get(`/resetDB` , (req,res)=>
                 productsModel.create(product, (err, data) => {
                     if (err) {
                         res.json(err)
+                    } else {
+                        emptyFolder(process.env.UPLOADED_FILES_FOLDER,false, (result)=>
+                        {
+                            res.json(data)
+                        })
                     }
                 })
 
@@ -53,99 +62,62 @@ router.get(`/products`, (req, res) =>
 //     })
 // })
 //-read-one-record-raveena
-router.get(`/products/:id`, (req, res) => 
+router.get(`/products/:id`, (req, res) =>
 {
-    productsModel.findById(req.params.id, (error, data) => 
+    productsModel.findById(req.params.id, (error, data) =>
     {
         res.json(data)
     })
 })
 
 // Add new record
-// router.post('/products/add', (req, res) => {
-
-//         jwt.verify(req.headers.authorization, process.env.JWT_PRIVATE_KEY, {algorithm: "HS256"}, (err, decodedToken) => {
-//             if (err) {
-//                 res.json({errorMessage: `User is not logged in`})
-//             } else {
-//                 if (decodedToken.accessLevel >= process.env.ACCESS_LEVEL_ADMIN) {
-//                     productsModel.create(req.body, (error,data) => 
-//     {
-        
-//         res.json(data)
-//     })
-//                 } else {
-//                     res.json({errorMessage: `User is not an administrator, so they cannot add new records`})
-//                 }
-//             }
-//         })
-    
-// })
 router.post(`/products/add`, (req, res) => {
-    productsModel.create(req.body, (error, data) => {
-        console.log(error)
-        res.json(data)
+    jwt.verify(req.headers.authorization, process.env.JWT_PRIVATE_KEY, {algorithm: "HS256"}, (err, decodedToken) => {
+        if (err) {
+            res.json({errorMessage: `User is not logged in`})
+        } else {
+            if (decodedToken.accessLevel >= process.env.ACCESS_LEVEL_ADMIN) {
+                productsModel.create(req.body, (error,data) =>
+                {
+                    res.json(data)
+                })
+            } else {
+                res.json({errorMessage: `User is not an administrator, so they cannot add new records`})
+            }
+        }
     })
-
 })
-
-// Update one record
-// router.put(`/products/:id`, (req, res) =>
-// {
-//     jwt.verify(req.headers.authorization, process.env.JWT_PRIVATE_KEY, {algorithm: "HS256"}, (err, decodedToken) => {
-//         if (err) {
-//             res.json({errorMessage: `User is not logged in`})
-//         } else {
-//             productsModel.findByIdAndUpdate(req.params.id, {$set: req.body}, (error, data) => {
-//                 res.json(data)
-//             })
-//         }
-//     })
-// })
 
 //update-raveena
 router.put(`/products/:id`, (req, res) => {
-    productsModel.findByIdAndUpdate(req.params.id, { $set: req.body }, (error, data) => {
-        res.json(data)
+    jwt.verify(req.headers.authorization, process.env.JWT_PRIVATE_KEY, {algorithm: "HS256"}, (err, decodedToken) => {
+        if (err) {
+            res.json({errorMessage: `User is not logged in`})
+        } else {
+            productsModel.findByIdAndUpdate(req.params.id, {$set: req.body}, (error, data) => {
+                res.json(data)
+            })
+        }
     })
 })
-// Delete one record
-// router.delete(`/products/:id`, (req, res) =>
-// {
-//     jwt.verify(req.headers.authorization, process.env.JWT_PRIVATE_KEY, {algorithm: "HS256"}, (err, decodedToken) => {
-//         if (err) {
-//             res.json({errorMessage: `User is not logged in`})
-//         } else {
-//             if (decodedToken.accessLevel >= process.env.ACCESS_LEVEL_ADMIN) {
-//                 productsModel.findByIdAndRemove(req.params.id, (error, data) => {
-//                     res.json(data)
-//                 })
-//             } else {
-//                 res.json({errorMessage: `User is not an administrator, so they cannot delete records`})
-//             }
-//         }
-//     })
-// })
 
+// Delete one record
 //delete-raveena
-router.delete(`/products/:id`, (req, res) => 
+router.delete(`/products/:id`, (req, res) =>
 {
-    productsModel.findByIdAndRemove(req.params.id, (error, data) => 
-    {
-        res.json(data)
-    })       
+    jwt.verify(req.headers.authorization, process.env.JWT_PRIVATE_KEY, {algorithm: "HS256"}, (err, decodedToken) => {
+        if (err) {
+            res.json({errorMessage: `User is not logged in`})
+        } else {
+            if (decodedToken.accessLevel >= process.env.ACCESS_LEVEL_ADMIN) {
+                productsModel.findByIdAndRemove(req.params.id, (error, data) => {
+                    res.json(data)
+                })
+            } else {
+                res.json({errorMessage: `User is not an administrator, so they cannot delete records`})
+            }
+        }
+    })
 })
 
 module.exports = router
-
-
-
-
-// router.post('/products/add', (req, res) => {
-//     productsModel.create(req.body, (error,data) => 
-//     {
-//         res.json(data)
-//     })
-// });
-
-// module.exports = router;
