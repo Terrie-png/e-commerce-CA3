@@ -42,8 +42,11 @@ export default class DisplayCart extends Component{
 
     render() {
         return(
-            <div className="table-container">
-                <ProductsTable carts={this.state.carts} />
+            <div>
+                <Link to="/"><button>Pay</button></Link>
+                <div className="table-container">
+                    <ProductsTable carts={this.state.carts} />
+                </div>
             </div>
         )
     }

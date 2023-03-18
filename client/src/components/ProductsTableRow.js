@@ -19,6 +19,9 @@ export default class ProductsTableRow extends Component
                 <td>{this.props.product.items_left}</td>
                 <td>{this.props.product.slug}</td>
                 <td>
+                    {this.props.product.quantity}
+                </td>
+                <td>
 
 
                     {localStorage.accessLevel >= ACCESS_LEVEL_ADMIN ? <Link className="red-button" to={"/DeleteCartProduct/" + this.props.product._id}>Delete</Link> : null}

@@ -17,8 +17,21 @@ router.get(`/carts`, (req, res) =>
                         var result = [];
                         for(let i = 0; i < data.length; i++){
                             productsModel.findOne({_id:data[i].productID}, (error, product) => {
-                                result.push(product);
+                                if(product != null){
+                                    result.push({
+                                        name: product.name,
+                                        brand: product.brand,
+                                        gender: product.gender,
+                                        category: product.category,
+                                        price: product.price,
+                                        is_in_inventory: product.is_in_inventory,
+                                        items_left: product.items_left,
+                                        slug: product.slug,
+                                        quantity: data[i].quantity
+                                    })
+                                }
                                 if(i >= data.length - 1){
+                                    console.log(result)
                                     res.json(result);
                                 }
                             })

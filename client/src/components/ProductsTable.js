@@ -19,7 +19,8 @@ export default class ProductsTable extends Component
                     <th>is_in_inventory</th>
                     <th>items_lef</th>
                     <th>slug</th>
-                    <th> </th>
+                    <th>Quantity</th>
+                    <th>Action</th>
                 </tr>
                 </thead>
 
