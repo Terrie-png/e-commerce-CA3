@@ -39,17 +39,25 @@ router.get(`/products`, (req, res) =>
 
 
 // Read one record
-router.get(`/products/:id`, (req, res) =>
+// router.get(`/products/:id`, (req, res) =>
+// {
+//     jwt.verify(req.header.authorization, process.env.JWT_PRIVATE_KEY, {algorithm:"HS256"},(err,decodedToken) =>{
+//         if(err){
+//             res.json({errorMessage: `User is not logged in`})
+//         } else{
+//             productsModel.findById(req.params.id, (error, data) =>
+//             {
+//                 res.json(data)
+//             })
+//         }
+//     })
+// })
+//-read-one-record-raveena
+router.get(`/products/:id`, (req, res) => 
 {
-    jwt.verify(req.header.authorization, process.env.JWT_PRIVATE_KEY, {algorithm:"HS256"},(err,decodedToken) =>{
-        if(err){
-            res.json({errorMessage: `User is not logged in`})
-        } else{
-            productsModel.findById(req.params.id, (error, data) =>
-            {
-                res.json(data)
-            })
-        }
+    productsModel.findById(req.params.id, (error, data) => 
+    {
+        res.json(data)
     })
 })
 
@@ -82,36 +90,50 @@ router.post(`/products/add`, (req, res) => {
 })
 
 // Update one record
-router.put(`/products/:id`, (req, res) =>
-{
-    jwt.verify(req.headers.authorization, process.env.JWT_PRIVATE_KEY, {algorithm: "HS256"}, (err, decodedToken) => {
-        if (err) {
-            res.json({errorMessage: `User is not logged in`})
-        } else {
-            productsModel.findByIdAndUpdate(req.params.id, {$set: req.body}, (error, data) => {
-                res.json(data)
-            })
-        }
+// router.put(`/products/:id`, (req, res) =>
+// {
+//     jwt.verify(req.headers.authorization, process.env.JWT_PRIVATE_KEY, {algorithm: "HS256"}, (err, decodedToken) => {
+//         if (err) {
+//             res.json({errorMessage: `User is not logged in`})
+//         } else {
+//             productsModel.findByIdAndUpdate(req.params.id, {$set: req.body}, (error, data) => {
+//                 res.json(data)
+//             })
+//         }
+//     })
+// })
+
+//update-raveena
+router.put(`/products/:id`, (req, res) => {
+    productsModel.findByIdAndUpdate(req.params.id, { $set: req.body }, (error, data) => {
+        res.json(data)
     })
 })
-
-
 // Delete one record
-router.delete(`/products/:id`, (req, res) =>
+// router.delete(`/products/:id`, (req, res) =>
+// {
+//     jwt.verify(req.headers.authorization, process.env.JWT_PRIVATE_KEY, {algorithm: "HS256"}, (err, decodedToken) => {
+//         if (err) {
+//             res.json({errorMessage: `User is not logged in`})
+//         } else {
+//             if (decodedToken.accessLevel >= process.env.ACCESS_LEVEL_ADMIN) {
+//                 productsModel.findByIdAndRemove(req.params.id, (error, data) => {
+//                     res.json(data)
+//                 })
+//             } else {
+//                 res.json({errorMessage: `User is not an administrator, so they cannot delete records`})
+//             }
+//         }
+//     })
+// })
+
+//delete-raveena
+router.delete(`/products/:id`, (req, res) => 
 {
-    jwt.verify(req.headers.authorization, process.env.JWT_PRIVATE_KEY, {algorithm: "HS256"}, (err, decodedToken) => {
-        if (err) {
-            res.json({errorMessage: `User is not logged in`})
-        } else {
-            if (decodedToken.accessLevel >= process.env.ACCESS_LEVEL_ADMIN) {
-                productsModel.findByIdAndRemove(req.params.id, (error, data) => {
-                    res.json(data)
-                })
-            } else {
-                res.json({errorMessage: `User is not an administrator, so they cannot delete records`})
-            }
-        }
-    })
+    productsModel.findByIdAndRemove(req.params.id, (error, data) => 
+    {
+        res.json(data)
+    })       
 })
 
 module.exports = router

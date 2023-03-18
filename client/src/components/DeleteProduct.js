@@ -5,49 +5,48 @@ import axios from "axios"
 import {SERVER_HOST} from "../config/global_constants"
 
 
-export default class DeleteProduct extends Component
+export default class DeleteProduct extends Component 
 {
-    constructor(props)
+    constructor(props) 
     {
         super(props)
-
+        
         this.state = {
-            redirectToDisplayAllProducts:false
+            redirect:false
         }
     }
-
-
-    componentDidMount()
-    {
-         // needed for sessions to work
+    
+    
+    componentDidMount() 
+    {   
         axios.delete(`${SERVER_HOST}/products/${this.props.match.params.id}`)
-            .then(res =>
+        .then(res => 
+        {
+            if(res.data)
             {
-                if(res.data)
+                if (res.data.errorMessage)
                 {
-                    if (res.data.errorMessage)
-                    {
-                        console.log(res.data.errorMessage)
-                    }
-                    else // success
-                    {
-                        console.log("Record deleted")
-                    }
-                    this.setState({redirectToDisplayAllProducts:true})
+                    console.log(res.data.errorMessage)    
                 }
-                else
-                {
-                    console.log("Record not deleted")
+                else // success
+                { 
+                    console.log("Record deleted")
                 }
-            })
+                this.setState({redirect:true})
+            }
+            else 
+            {
+                console.log("Record not deleted")
+            }
+        })
     }
-
-
-    render()
+  
+  
+    render() 
     {
         return (
-            <div>
-                {this.state.redirectToDisplayAllProducts ? <Redirect to="/DisplayAllProducts"/> : null}
+            <div>   
+                {this.state.redirect ? <Redirect to="/DisplayAllproducts"/> : null}                      
             </div>
         )
     }

@@ -76,7 +76,11 @@ export default class ProductCard extends Component
 
                 {/*<div>{this.props.product.slug}</div>*/}
 
-                {localStorage.accessLevel > ACCESS_LEVEL_ADMIN ? <Link className="green-button" to={"/EditProduct/" + this.props.product._id}>Edit</Link> : null}
+                {
+                localStorage.accessLevel >= ACCESS_LEVEL_ADMIN ? 
+                <Link className="green-button" to={"/EditProduct/" + this.props.product._id}>Edit</Link> 
+                : null
+                }
 
                 {localStorage.accessLevel >= ACCESS_LEVEL_ADMIN ? <Link className="red-button" to={"/DeleteProduct/" + this.props.product._id}>Delete</Link> : null}
             </div>
