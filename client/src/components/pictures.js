@@ -32,7 +32,7 @@ class pictures extends Component {
         const { current, images } = this.state;
         return (
             <header>
-                <img src={images[current].src} alt={images[current].alt}/>
+                <img style={{width: "100%", height: "500px"}} src={images[current].src} alt={images[current].alt}/>
             </header>
         );
     }

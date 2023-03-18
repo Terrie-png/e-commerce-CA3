@@ -95,7 +95,7 @@ export default class DisplayAllProducts extends Component
 
                 {/*<header/>*/}
 
-                <div id="mn">
+                <div id="mn" style={{width: "100%", height: "40%"}}>
                     <Pictures/>
                     {/*<img src={logo}  height="700px" width="1500px"/>*/}
                 </div>
