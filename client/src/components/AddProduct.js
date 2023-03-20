@@ -435,12 +435,12 @@ export default class AddProduct extends Component {
 
 
     handleSubmit = (e) => {
-        // e.preventDefault()
-        // this.setState({wasSubmittedAtLeastOnce: true});
-        //
-        // const formInputsState = this.validate();
-        // if (Object.keys(formInputsState).every(index => formInputsState[index]))
-        // {
+        e.preventDefault()
+        this.setState({wasSubmittedAtLeastOnce: true});
+
+        const formInputsState = this.validate();
+        if (Object.keys(formInputsState).every(index => formInputsState[index]))
+        {
 
         const productObject = {
             name: this.state.name,
@@ -451,7 +451,7 @@ export default class AddProduct extends Component {
             price: this.state.price,
             items_left: this.state.items_left,
             slug: this.state.slug,
-            // wasSubmittedAtLeastOnce: false
+            wasSubmittedAtLeastOnce: false
 
         }
                     axios.defaults.withCredentials = true;
@@ -470,67 +470,68 @@ export default class AddProduct extends Component {
             })
     }
 
-    // }
+    }
 
-    //
-    // validateName()
-    // {
-    //     const pattern = /^[A-Za-z]+$/;
-    //     return pattern.test(String(this.state.name))
-    // }
-    //
-    //
-    // validateBrand()
-    // {
-    //     const pattern = /^[A-Za-z]+$/;
-    //     return pattern.test(String(this.state.brand))
-    // }
-    //
-    //
-    //
-    // validatePrice()
-    // {
-    //     const price = parseInt(this.state.price)
-    //     return (price >= 10 && price <= 1000)
-    // }
-    // validateStock()
-    // {
-    //     const items_left = parseInt(this.state.items_left)
-    //     return (items_left >= 1 && items_left <= 200)
-    // }
-    // validateSlug()
-    // {
-    //     const slug = /^[A-Za-z]+$/;
-    //     return slug.test(String(this.state.slug))
-    // }
-    //
-    //
-    // validate()
-    // {
-    //     return {
-    //         name: this.validateName(),
-    //         brand: this.validateBrand(),
-    //         price: this.validatePrice(),
-    //         items_left:this.validateStock(),
-    //         slug: this.validateSlug()
-    //
-    //
-    //     };
-    // }
+
+
+    validateName()
+    {
+        const pattern = /^[A-Za-z]+$/;
+        return pattern.test(String(this.state.name))
+    }
+
+
+    validateBrand()
+    {
+        const pattern = /^[A-Za-z]+$/;
+        return pattern.test(String(this.state.brand))
+    }
+
+
+
+    validatePrice()
+    {
+        const price = parseInt(this.state.price)
+        return (price >= 10 && price <= 1000)
+    }
+    validateStock()
+    {
+        const items_left = parseInt(this.state.items_left)
+        return (items_left >= 1 && items_left <= 200)
+    }
+    validateSlug()
+    {
+        const slug = /^[A-Za-z]+$/;
+        return slug.test(String(this.state.slug))
+    }
+
+
+    validate()
+    {
+        return {
+            name: this.validateName(),
+            brand: this.validateBrand(),
+            price: this.validatePrice(),
+            items_left:this.validateStock(),
+            slug: this.validateSlug()
+
+
+        };
+    }
 
     render() {
-        // let errorMessage = "";
-        // if(this.state.wasSubmittedAtLeastOnce)
-        // {
-        //     errorMessage = <div className="error">Shoe Details are incorrect<br/></div>;
-        // }
+        let errorMessage = "";
+        if(this.state.wasSubmittedAtLeastOnce)
+        {
+            errorMessage = <div className="error">Shoe Details are incorrect<br/></div>;
+        }
 
         return (
             <div className="form-container">
                 {this.state.redirect ? <Redirect to="/DisplayAllProducts"/> : null}
 
                 <Form>
-                    {/*{errorMessage}*/}
+                    {errorMessage}
                     <Form.Group controlId="name">
                         <Form.Label>Name</Form.Label>
                         <Form.Control ref={(input) => {
