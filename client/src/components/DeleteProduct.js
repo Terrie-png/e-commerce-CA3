@@ -15,13 +15,14 @@ export default class DeleteProduct extends Component
             redirect:false
         }
     }
-    
-    
-    componentDidMount() 
-    {   
-        axios.delete(`${SERVER_HOST}/products/${this.props.match.params.id}`)
-        .then(res => 
-        {
+    product;
+
+    componentDidMount(url, config)
+    {
+        axios.defaults.withCredentials = true;
+        axios.delete(`${SERVER_HOST}/products/:id`, this.product, {headers: {"authorization": localStorage.token}})
+            .then(res => {
+
             if(res.data)
             {
                 if (res.data.errorMessage)
@@ -46,7 +47,7 @@ export default class DeleteProduct extends Component
     {
         return (
             <div>   
-                {this.state.redirect ? <Redirect to="/DisplayAllproducts"/> : null}                      
+                {this.state.redirect ? <Redirect to="/DisplayAllProducts"/> : null}
             </div>
         )
     }

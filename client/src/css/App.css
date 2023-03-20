@@ -185,8 +185,6 @@ color:pink;
 
 
 
-
-
 /* table of cars */
 .table-container table
 {
@@ -262,3 +260,29 @@ color:pink;
     width:60px;
     background-color: white;
 }
+
+
+/*.prof{*/
+/*    display: flex;*/
+/*    flex-direction: column;*/
+/*    align-items: center;*/
+/*}*/
+
+/*.user-info {*/
+/*    display: flex;*/
+/*    flex-direction: column;*/
+/*    align-items: center;*/
+/*    margin-top: 1rem;*/
+/*}*/
+
+/*img {*/
+/*    max-width: 300px;*/
+/*    max-height: 300px;*/
+/*}*/
+
+/*p {*/
+/*    font-size: 1.5rem;*/
+/*    font-weight: bold;*/
+/*    text-align: center;*/
+/*}*/
+

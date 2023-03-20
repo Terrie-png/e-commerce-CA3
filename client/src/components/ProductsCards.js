@@ -8,7 +8,7 @@ export default class ProductsCards extends Component
     render()
     {
         return (
-            <div class="cards">
+            <div className="cards">
                 {this.props.product.map((product) => <ProductCard leRow key={product._id} product={product}/>)}
             </div>
 
