@@ -497,7 +497,7 @@ export default class AddProduct extends Component {
     validateStock()
     {
         const items_left = parseInt(this.state.items_left)
-        return (items_left >= 1 && items_left <= 200)
+        return (items_left >= 0 && items_left <= 200)
     }
     validateSlug()
     {
