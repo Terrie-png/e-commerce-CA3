@@ -11,7 +11,7 @@ h1{
 
     color:white;
     font-size:30px;
-    align-items: left;
+    /*align-items: left;*/
 }
 h3{
     
@@ -77,7 +77,7 @@ flex-wrap:wrap;
 .table-container 
 {
   /* max-width: 700px; */
-  margin: 10px;;
+  margin: 10px;
 }
 
 .form-container
@@ -86,7 +86,7 @@ flex-wrap:wrap;
     padding: 20px;
     margin-left: auto;
     margin-right: auto;
-    border-radius: 5px;
+    border-radius: 20px;
     background: #f7f7f7;
 }
 
@@ -155,22 +155,22 @@ height:auto;
 .blue-button:hover
 {
     text-decoration: none;
-    color:#fff;
+    color:white;
 }
 
 .green-button:hover
 {
-    background-color: #107020; 
+    background-color:black;
 }
 
 .red-button:hover
 {
-  background-color: #a01020; 
+  background-color:burlywood;
 }
 
 .blue-button:hover
 {
-  background-color: #1020a0; 
+  background-color: black;
 }
 /* end of link buttons */
 
@@ -195,7 +195,7 @@ color:pink;
 .table-container thead
 {
     background-color: #aaa;
-    color:#fff;
+    color:white;
     text-align: left;
     text-transform: capitalize;
 }
@@ -212,12 +212,12 @@ color:pink;
 }
 .table-container tbody tr:nth-child(odd) 
 {
-    background-color: #eee;
+    background-color:white;
 }
 
 .table-container tbody tr:nth-child(even) 
 {
-    background-color: #ffa;
+    background-color:burlywood;
 }
 
 .add-new-car
