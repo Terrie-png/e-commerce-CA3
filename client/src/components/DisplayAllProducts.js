@@ -31,7 +31,9 @@ export default class DisplayAllProducts extends Component
 
         this.state = {
             products:[],
-            selectedProducts: []
+            selectedProducts: [],
+            alphabetSort: 1,
+            priceSort: 1,
         }
     }
 
@@ -65,12 +67,12 @@ export default class DisplayAllProducts extends Component
 
 
     handleWomenFilter = async () => {
-         this.filtered = this.state.selectedProducts.filter(product => product.gender === "WOMEN");
+         this.filtered = this.state.products.filter(product => product.gender === "WOMEN");
         await this.setState({selectedProducts: this.filtered})
     }
 
     handleMenFilter = async () => {
-        this.filtered = this.state.selectedProducts.filter(product => product.gender === "MEN");
+        this.filtered = this.state.products.filter(product => product.gender === "MEN");
         await this.setState({selectedProducts: this.filtered})
     }
 
@@ -80,13 +82,20 @@ export default class DisplayAllProducts extends Component
         await this.setState({selectedProducts: this.filtered})
     }
 
-    handleSearchArray = async (e) => {
-
+    handleSearchArray =  (e) => {
         let newProducts = this.filtered.filter(product => product.name.toLowerCase().includes(e.target.value.toLowerCase()) || product.price.toString().includes(e.target.value));
-
-        await this.setState({selectedProducts: newProducts})
+         this.setState({selectedProducts: newProducts})
     }
 
+    handleAlphabetical =  (e) => {
+        let newProducts = this.state.selectedProducts.sort((a, b) => (a.name > b.name) ? this.state.alphabetSort : -this.state.alphabetSort);
+         this.setState({selectedProducts: newProducts, alphabetSort: this.state.alphabetSort * -1})
+    }
+
+    handlePrice =  (e) => {
+        let newProducts = this.state.selectedProducts.sort((a, b) => (a.price > b.price) ? this.state.priceSort : -this.state.priceSort);
+         this.setState({selectedProducts: newProducts, priceSort: this.state.priceSort * -1})
+    }
 
 
     render()
@@ -106,6 +115,8 @@ export default class DisplayAllProducts extends Component
                     <Pictures/>
                     {/*<img src={logo}  height="700px" width="1500px"/>*/}
                 </div>
+            <button onClick={this.handleAlphabetical}>Alphabetical Sort</button>
+            <button onClick={this.handlePrice}>Price Sort</button>
             <div className="form-container">
                 {localStorage.accessLevel >  ACCESS_LEVEL_GUEST ?
                     <div className="logout">
