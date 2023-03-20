@@ -17,10 +17,10 @@ export default class DeleteProduct extends Component
     }
     product;
 
-    componentDidMount(url, config)
+    componentDidMount()
     {
         axios.defaults.withCredentials = true;
-        axios.delete(`${SERVER_HOST}/products/:id`, this.product, {headers: {"authorization": localStorage.token}})
+        axios.delete(`${SERVER_HOST}/products/${this.props.match.params.id}`, {headers: {"authorization": localStorage.token}})
             .then(res => {
 
             if(res.data)
