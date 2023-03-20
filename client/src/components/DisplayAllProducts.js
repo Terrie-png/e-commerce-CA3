@@ -46,6 +46,7 @@ export default class DisplayAllProducts extends Component
                     } else {
                         console.log("Records read")
                         this.setState({products: res.data, selectedProducts:res.data})
+                        this.filtered = res.data;
                     }
                 } else {
                     console.log("Record not found")
@@ -64,12 +65,12 @@ export default class DisplayAllProducts extends Component
 
 
     handleWomenFilter = async () => {
-         this.filtered = this.state.products.filter(product => product.gender === "WOMEN");
+         this.filtered = this.state.selectedProducts.filter(product => product.gender === "WOMEN");
         await this.setState({selectedProducts: this.filtered})
     }
 
     handleMenFilter = async () => {
-        this.filtered = this.state.products.filter(product => product.gender === "MEN");
+        this.filtered = this.state.selectedProducts.filter(product => product.gender === "MEN");
         await this.setState({selectedProducts: this.filtered})
     }
 
@@ -79,6 +80,12 @@ export default class DisplayAllProducts extends Component
         await this.setState({selectedProducts: this.filtered})
     }
 
+    handleSearchArray = async (e) => {
+
+        let newProducts = this.filtered.filter(product => product.name.toLowerCase().includes(e.target.value.toLowerCase()) || product.price.toString().includes(e.target.value));
+
+        await this.setState({selectedProducts: newProducts})
+    }
 
 
 
@@ -91,7 +98,7 @@ export default class DisplayAllProducts extends Component
             <div id="ab">
                 <div id="jk">
                <Head /></div>
-            <Header selectedProducts={this.state.selectedProducts} handleWomenFilter={this.handleWomenFilter} handleMenFilter={this.handleMenFilter} handleKidsFilter={this.handleKidsFilter} />
+            <Header selectedProducts={this.state.selectedProducts} handleSearchArray={this.handleSearchArray} handleWomenFilter={this.handleWomenFilter} handleMenFilter={this.handleMenFilter} handleKidsFilter={this.handleKidsFilter} />
 
                 {/*<header/>*/}
 

@@ -26,7 +26,7 @@ export default class header extends Component{
                     <h3 onClick={this.props.handleWomenFilter}>Women</h3>
                     <h3 onClick={this.props.handleMenFilter}>Men</h3>
                     <h3 onClick={this.props.handleKidsFilter}>Kids</h3>
-                    <input  type="search" placeholder="Search"/>
+                    <input  type="search" onChange={this.props.handleSearchArray} placeholder="Search"/>
                     {/* <FontAwesomeIcon icon={faCoffee} /> */}
                     <FontAwesomeIcon icon={faHeart} Style="font-size:250px;"/>
                     {/*for shopping cart*/}
