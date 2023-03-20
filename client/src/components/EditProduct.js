@@ -208,7 +208,7 @@ export default class EditProduct extends Component
     componentDidMount()
     {
         this.inputToFocus.focus()
-
+        // axios.defaults.withCredentials = true;
         axios.get(`${SERVER_HOST}/products/${this.props.match.params.id}`)
             .then(res =>
             {
@@ -247,7 +247,7 @@ export default class EditProduct extends Component
         this.setState({[e.target.name]: e.target.value})
     }
 
-    product;
+    // product;
     handleSubmit = (e) =>
     {
         e.preventDefault()
@@ -264,7 +264,7 @@ export default class EditProduct extends Component
         }
 
         axios.defaults.withCredentials = true;
-        axios.put(`${SERVER_HOST}/products/:id`, this.product, {headers:{"authorization":localStorage.token}})
+        axios.put(`${SERVER_HOST}/products/${this.props.match.params.id}`,productObject , {headers:{"authorization":localStorage.token}})
             .then(res =>
             {
                 if(res.data)

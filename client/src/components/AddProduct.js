@@ -431,7 +431,7 @@ export default class AddProduct extends Component {
     handleChange = (e) => {
         this.setState({[e.target.name]: e.target.value})
     }
-    product;
+    // product;
 
 
     handleSubmit = (e) => {
@@ -455,7 +455,7 @@ export default class AddProduct extends Component {
 
         }
                     axios.defaults.withCredentials = true;
-                    axios.post(`${SERVER_HOST}/products/add`, this.product, {headers:{"authorization":localStorage.token}})
+                    axios.post(`${SERVER_HOST}/products/add`, productObject, {headers:{"authorization":localStorage.token}})
             .then(res => {
                 if (res.data) {
                     if (res.data.errorMessage) {
