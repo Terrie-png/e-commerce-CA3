@@ -136,6 +136,13 @@ export default class DisplayAllProducts extends Component
                     :
                     null
                 }
+                {localStorage.accessLevel >= ACCESS_LEVEL_ADMIN ?
+                    <div className="add-new-car">
+                        <Link className="blue-button" to={"/UsersPage"}>Users Page</Link>
+                    </div>
+                    :
+                    null
+                }
                 <div className="add-new-car" >
                     <LinkInClass value="RESET" className="red-button" onClick={this.handleReset}/>
 

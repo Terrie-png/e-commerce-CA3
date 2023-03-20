@@ -11,27 +11,26 @@ const fs = require('fs');
 const multer = require('multer');
 const upload = multer({dest:`${process.env.UPLOADED_FILES_FOLDER}`})
 const emptyFolder = require('empty-folder')
+const usersModel = require('../models/users');
+const bcrypt = require("bcryptjs");
 //reset productd db
 router.get(`/resetDB` , (req,res)=>
 {
 
-    productsModel.deleteMany({},(error,none)=>{
+
+        productsModel.deleteMany({},(error,none)=>{
         if(none) {
             products.map((product) => {
                 productsModel.create(product, (err, data) => {
                     if (err) {
                         res.json(err)
-                    } else {
-                        emptyFolder(process.env.UPLOADED_FILES_FOLDER,false, (result)=>
-                        {
-                            res.json(data)
-                        })
                     }
                 })
 
             })
         }
     })
+
 })
 
 
@@ -46,21 +45,6 @@ router.get(`/products`, (req, res) =>
 })
 
 
-
-// Read one record
-// router.get(`/products/:id`, (req, res) =>
-// {
-//     jwt.verify(req.header.authorization, process.env.JWT_PRIVATE_KEY, {algorithm:"HS256"},(err,decodedToken) =>{
-//         if(err){
-//             res.json({errorMessage: `User is not logged in`})
-//         } else{
-//             productsModel.findById(req.params.id, (error, data) =>
-//             {
-//                 res.json(data)
-//             })
-//         }
-//     })
-// })
 //-read-one-record-raveena
 router.get(`/products/:id`, (req, res) =>
 {

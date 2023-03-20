@@ -18,6 +18,8 @@ import AddProduct from "./components/AddProduct";
 import DeleteCart from "./components/DeleteCartProducts";
 import BuyProduct from "./components/BuyProduct"
 import PayPalMessage from "./components/PayPalMessage"
+import UserPage from "./components/UserPage";
+import DeleteUser from "./components/DeleteUser";
 
 import {ACCESS_LEVEL_GUEST} from "./config/global_constants"
 
@@ -53,6 +55,8 @@ export default class App extends Component
                     <LoggedInRoute exact path="/DeleteCartProducts" component={DeleteCart}/>
                     <LoggedInRoute exact path="/Carts/:id" component={DisplayCart}/>
                     <LoggedInRoute exact path="/DisplayCart" component={DisplayCart}/>
+                    <LoggedInRoute exact path="/UsersPage" component={UserPage}/>
+                    <LoggedInRoute exact path="/DeleteUser/:id" component={DeleteUser}/>
                     <Route exact path="/DisplayAllProducts" component={DisplayAllProducts}/>
                     <Route path="*" component={DisplayAllProducts}/>
                 </Switch>

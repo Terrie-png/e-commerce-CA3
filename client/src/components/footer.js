@@ -35,9 +35,9 @@ class footer extends Component {
                         <div className="col-md-3">
                             <h5>Follow Us</h5>
                             <ul>
-                                <li><a href="#">Facebook</a></li>
-                                <li><a href="#">Twitter</a></li>
-                                <li><a href="#">Instagram</a></li>
+                                <li><a href="https://www.facebook.com/DkIT.ie/">Facebook</a></li>
+                                <li><a href="https://twitter.com/dkit_ie">Twitter</a></li>
+                                <li><a href="https://www.instagram.com/dkit_ie/">Instagram</a></li>
                             </ul>
                         </div>
 
