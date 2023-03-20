@@ -16,6 +16,8 @@ import DeleteProduct from "./components/DeleteProduct";
 import DisplayCart from "./components/DisplayCart";
 import AddProduct from "./components/AddProduct";
 import DeleteCart from "./components/DeleteCartProducts";
+import BuyProduct from "./components/BuyProduct"
+import PayPalMessage from "./components/PayPalMessage"
 
 import {ACCESS_LEVEL_GUEST} from "./config/global_constants"
 
@@ -41,6 +43,8 @@ export default class App extends Component
                     <Route exact path="/ResetDatabase" component={ResetDatabase} />                    
                     <Route exact path="/" component={DisplayAllProducts} />
                     <Route exact path="/Login" component={Login} />
+                    <Route exact path="/BuyProduct" component={BuyProduct} />
+                    <Route exact path="/PayPalMessage/:messageType/:payPalPaymentID" component={PayPalMessage}/>
                     <LoggedInRoute exact path="/Logout" component={Logout} />
                     <LoggedInRoute exact path="/AddCar" component={AddCar} />
                     <LoggedInRoute exact path="/AddProduct" component={AddProduct}/>

@@ -1,9 +1,13 @@
 import React,{Component} from "react";
 import {Link} from "react-router-dom";
 import ProductsTable from "./ProductsTable";
-import {ACCESS_LEVEL_ADMIN, SERVER_HOST} from "../config/global_constants";
 import axios from "axios";
+import {SANDBOX_CLIENT_ID, SERVER_HOST} from "../config/global_constants"
+import PayPalMessage from "./PayPalMessage"
+import {PayPalButtons, PayPalScriptProvider} from "@paypal/react-paypal-js"
 
+
+import BuyProduct from "./BuyProduct"
 
 
 export default class DisplayCart extends Component{
@@ -12,7 +16,8 @@ export default class DisplayCart extends Component{
         super(props);
 
         this.state = {
-            carts:[]
+            carts:[],
+            price:0
         }
     }
 
@@ -30,7 +35,15 @@ export default class DisplayCart extends Component{
                     else
                     {
                         console.log("Records read")
-                        this.setState({carts: res.data})
+                        let total_price = 0;
+                        res.data.map((product) => {
+                            if(product == null){
+                                console.log("null")
+                            } else {
+                                total_price += product.price
+                            }
+                        })
+                        this.setState({carts: res.data, price: total_price})
                     }
                 }
                 else
@@ -43,9 +56,8 @@ export default class DisplayCart extends Component{
     render() {
         return(
             <div>
-                <Link to="/"><button>Pay</button></Link>
                 <div className="table-container">
-                    <ProductsTable carts={this.state.carts} />
+                    <ProductsTable carts={this.state.carts} price={this.state.price} />
                 </div>
             </div>
         )

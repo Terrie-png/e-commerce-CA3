@@ -17,8 +17,9 @@ router.get(`/carts`, (req, res) =>
                         var result = [];
                         for(let i = 0; i < data.length; i++){
                             productsModel.findOne({_id:data[i].productID}, (error, product) => {
-                                if(product != null){
+                                if(product != null && product.items_left >= data[i].quantity){
                                     result.push({
+                                        _id: product._id,
                                         name: product.name,
                                         brand: product.brand,
                                         gender: product.gender,
@@ -27,11 +28,17 @@ router.get(`/carts`, (req, res) =>
                                         is_in_inventory: product.is_in_inventory,
                                         items_left: product.items_left,
                                         slug: product.slug,
-                                        quantity: data[i].quantity
+                                        quantity: data[i].quantity,
+                                        haveStock: product.items_left >= data[i].quantity
+                                    })
+                                } else {
+                                    cartsModel.findByIdAndRemove(data[i]._id, (error, data) => {
+                                        if(error){
+                                            console.log(error)
+                                        }
                                     })
                                 }
                                 if(i >= data.length - 1){
-                                    console.log(result)
                                     res.json(result);
                                 }
                             })

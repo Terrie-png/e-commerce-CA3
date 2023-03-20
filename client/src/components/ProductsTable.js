@@ -1,9 +1,14 @@
 import React, {Component} from "react"
 import ProductsTableRow from "./ProductsTableRow"
+import BuyProduct from "./BuyProduct";
 
 
 export default class ProductsTable extends Component
 {
+    constructor(props){
+        super(props)
+
+    }
 
     render()
     {
@@ -32,6 +37,10 @@ export default class ProductsTable extends Component
                         return <ProductsTableRow key={product._id} product={product}/>
                 }})}
                 </tbody>
+                <tr>
+                    <td>
+                        <BuyProduct product={this.props.carts} price={this.props.price}/></td>
+                </tr>
             </table>
         )
     }
