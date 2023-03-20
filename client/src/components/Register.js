@@ -128,8 +128,7 @@ export default class Register extends Component
                 />
 </label>
 
-<button type="submit">Sign Up
-    <LinkInClass  className="green-button" onClick={this.handleSubmit} /></button>
+            <LinkInClass  value="Register" className="green-button" onClick={this.handleSubmit} />
                 <Link className="red-button" to={"/DisplayAllCars"}>Cancel</Link>   
             </form>
         )
