@@ -1,7 +1,7 @@
 import React, {Component} from "react"
 import {Link} from "react-router-dom"
 
-import {ACCESS_LEVEL_GUEST, ACCESS_LEVEL_ADMIN} from "../config/global_constants"
+import {ACCESS_LEVEL_NORMAL_USER, ACCESS_LEVEL_ADMIN} from "../config/global_constants"
 
 
 export default class ProductsTableRow extends Component
@@ -24,7 +24,7 @@ export default class ProductsTableRow extends Component
                 <td>
 
 
-                    {localStorage.accessLevel >= ACCESS_LEVEL_ADMIN ? <Link className="red-button" to={"/DeleteCartProduct/" + this.props.product._id}>Delete</Link> : null}
+                    {localStorage.accessLevel >= ACCESS_LEVEL_NORMAL_USER ? <Link className="red-button" to={"/DeleteCartProduct/" + this.props.product._id}>Delete</Link> : null}
                 </td>
             </tr>
         )

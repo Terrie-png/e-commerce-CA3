@@ -1,6 +1,8 @@
 import React, {Component} from "react"
 import ProductsTableRow from "./ProductsTableRow"
 import BuyProduct from "./BuyProduct";
+import {ACCESS_LEVEL_NORMAL_USER} from "../config/global_constants";
+import {Link} from "react-router-dom";
 
 
 export default class ProductsTable extends Component
@@ -39,7 +41,8 @@ export default class ProductsTable extends Component
                 </tbody>
                 <tr>
                     <td>
-                        <BuyProduct product={this.props.carts} price={this.props.price}/></td>
+                        {localStorage.accessLevel >= ACCESS_LEVEL_NORMAL_USER && this.props.carts.length > 0 ?<BuyProduct product={this.props.carts} price={this.props.price}/> : null}
+                    </td>
                 </tr>
             </table>
         )
