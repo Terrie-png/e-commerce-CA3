@@ -74,12 +74,12 @@ export default class Register extends Component
     render() 
     {     
         return (
-            <form className="form-container" noValidate = {true} id = "loginOrRegistrationForm">
+            <form className="login-form" noValidate = {true} id = "loginOrRegistrationForm">
            
                 {this.state.isRegistered ? <Redirect to="/DisplayAllCars"/> : null} 
             
                 <h2>New User Registration</h2>
-           
+                <label>Name:
                 <input  
                     name = "name"              
                     type = "text"
@@ -88,8 +88,9 @@ export default class Register extends Component
                     value = {this.state.name}
                     onChange = {this.handleChange}
                     ref = {(input) => { this.inputToFocus = input }} 
-                /><br/>           
-
+                />
+                </label><br/>
+<label>Email
 	        <input  
                     name = "email"              
                     type = "email"
@@ -97,8 +98,9 @@ export default class Register extends Component
                     autoComplete="email"
                     value = {this.state.email}
                     onChange = {this.handleChange}
-                /><br/>              
-
+                />
+</label><br/>
+<label>Password
 	        <input  
                     name = "password"           
                     type = "password"
@@ -107,8 +109,9 @@ export default class Register extends Component
                     title = "Password must be at least ten-digits long and contains at least one lowercase letter, one uppercase letter, one digit and one of the following characters (£!#€$%^&*)"
                     value = {this.state.password}
                     onChange = {this.handleChange}
-                /><br/>           
-
+                />
+</label><br/>
+<label>Confirm Password:
                 <input          
                     name = "confirmPassword"    
                     type = "password"
@@ -116,15 +119,17 @@ export default class Register extends Component
                     autoComplete="confirmPassword"
                     value = {this.state.confirmPassword}
                     onChange = {this.handleChange}
-                /><br/><br/>
-
+                />
+</label><br/><br/>
+<label>Upload an Image
                 <input
                     type = "file"
                     onChange = {this.handleFileChange}
                 />
+</label>
 
-
-                <LinkInClass value="Register New User" className="green-button" onClick={this.handleSubmit} />
+<button type="submit">Sign Up
+    <LinkInClass  className="green-button" onClick={this.handleSubmit} /></button>
                 <Link className="red-button" to={"/DisplayAllCars"}>Cancel</Link>   
             </form>
         )

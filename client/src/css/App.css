@@ -137,17 +137,17 @@ height:auto;
 
 .green-button
 {
-    background-color: #28a745;
+    background-color: burlywood;
 }
 
 .red-button
 {
-    background-color: #dc3545;
+    background-color: black;
 }
 
 .blue-button
 {
-    background-color: #3545dc;
+    background-color: burlywood;
 }
 
 .green-button:hover,
@@ -286,3 +286,84 @@ color:pink;
 /*    text-align: center;*/
 /*}*/
 
+.login-form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    background-color: white;
+
+}
+
+label {
+    display: block;
+    margin-bottom: 1rem;
+    color: black;
+}
+
+input {
+    padding: 0.5rem;
+    border: 1px solid black;
+    border-radius: 0.25rem;
+    margin-bottom: 1rem;
+}
+
+button {
+    padding: 0.5rem 1rem;
+    border: none;
+    border-radius: 0.25rem;
+    background-color: burlywood;
+    color: white;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: black;
+}
+
+/*.cart-display {*/
+/*    background-color: white;*/
+/*    color: black;*/
+/*    padding: 1rem;*/
+/*}*/
+
+/*h2 {*/
+/*    color: burlywood;*/
+/*    font-weight: bold;*/
+/*    margin-bottom: 1rem;*/
+/*}*/
+
+/*ul {*/
+/*    list-style: none;*/
+/*    padding: 0;*/
+/*}*/
+
+/*li {*/
+/*    display: flex;*/
+/*    align-items: center;*/
+/*    justify-content: space-between;*/
+/*    margin-bottom: 1rem;*/
+/*}*/
+
+/*img {*/
+/*    width: 100px;*/
+/*    height: 100px;*/
+/*    object-fit: contain;*/
+/*    margin-right: 1rem;*/
+/*}*/
+
+/*button {*/
+/*    padding: 0.5rem 1rem;*/
+/*    border: none;*/
+/*    border-radius: 0.25rem;*/
+/*    background-color: burlywood;*/
+/*    color: white;*/
+/*    font-weight: bold;*/
+/*    cursor: pointer;*/
+/*}*/
+
+/*button:hover {*/
+/*    background-color: black;*/
+/*}*/

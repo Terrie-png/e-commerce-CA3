@@ -60,11 +60,11 @@ export default class Login extends Component
     render()
     {            
         return (
-            <form className="form-container" noValidate = {true} id = "loginOrRegistrationForm">
+            <form className="login-form" noValidate = {true} id = "loginOrRegistrationForm">
                 <h2>Login</h2>
                 
                 {this.state.isLoggedIn ? <Redirect to="/Test"/> : null}
-                
+               <label>Email
                 <input 
                     type = "email" 
                     name = "email" 
@@ -72,8 +72,9 @@ export default class Login extends Component
                     autoComplete="email"
                     value={this.state.email} 
                     onChange={this.handleChange}
-                /><br/>
-                    
+                />
+               </label> <br/>
+                  <label>Password:
                 <input 
                     type = "password" 
                     name = "password" 
@@ -81,9 +82,12 @@ export default class Login extends Component
                     autoComplete="password"
                     value={this.state.password} 
                     onChange={this.handleChange}
-                /><br/><br/>
-                
-                <LinkInClass value="Login" className="green-button" onClick={this.handleSubmit}/> 
+                />
+                  </label>
+                <br/><br/>
+
+                <button>Sign In
+                <LinkInClass value="Login" className="green-button" onClick={this.handleSubmit}/> </button>
                 <Link className="red-button" to={"/DisplayAllProducts"}>Cancel</Link>
             </form>
         )

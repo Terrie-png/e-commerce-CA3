@@ -57,6 +57,7 @@ export default class DisplayCart extends Component{
         return(
             <div>
                 <div className="table-container">
+                    <h2>Cart Items</h2>
                     <ProductsTable carts={this.state.carts} price={this.state.price} />
                 </div>
             </div>
