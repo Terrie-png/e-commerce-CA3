@@ -6,11 +6,13 @@ const usersModel = require(`../models/users`)
 const bcrypt = require('bcryptjs');  // needed for password encryption
 
 const jwt = require('jsonwebtoken')
+const productsModel = require("../models/products");
 
 // IMPORTANT
 // Obviously, in a production release, you should never have the code below, as it allows a user to delete a database collection
 // The code below is for development testing purposes only 
-router.post(`/users/reset_user_collection`, (req,res) => 
+
+router.post(`/users/reset_user_collection`, (req,res) =>
 {
     usersModel.deleteMany({}, (error, data) => 
     {
@@ -40,7 +42,23 @@ router.post(`/users/reset_user_collection`, (req,res) =>
         }
     })      
 })
-
+//read all records
+router.get(`/users`, (req, res) =>
+{
+    //user does not have to be logged in to see car details
+    productsModel.find((error, data) =>
+    {
+        res.json(data)
+    })
+})
+//read one record
+router.get(`/users/:id`, (req, res) =>
+{
+    productsModel.findById(req.params.id, (error, data) =>
+    {
+        res.json(data)
+    })
+})
 
 // register
 router.post(`/users/register/:name/:email/:password`,upload.single("profilePhoto") ,(req,res) =>
@@ -108,6 +126,23 @@ router.post(`/users/login/:email/:password`, (req,res) =>
 router.post(`/users/logout`, (req,res) =>
 {
     res.json({})
+})
+
+router.delete(`/users/:id`, (req, res) =>
+{
+    jwt.verify(req.headers.authorization, process.env.JWT_PRIVATE_KEY, {algorithm: "HS256"}, (err, decodedToken) => {
+        if (err) {
+            res.json({errorMessage: `User is not logged in`})
+        } else {
+            if (decodedToken.accessLevel >= process.env.ACCESS_LEVEL_ADMIN) {
+                productsModel.findByIdAndRemove(req.params.id, (error, data) => {
+                    res.json(data)
+                })
+            } else {
+                res.json({errorMessage: `User is not an administrator, so they cannot delete users`})
+            }
+        }
+    })
 })
 
 
